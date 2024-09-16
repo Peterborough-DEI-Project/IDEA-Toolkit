@@ -14,5 +14,9 @@ Provides feedback based on responses, ensuring exclusion is minimized...
 Tracks the implementation of IDEA and helps staff report annually on their progress...
 
 ## Team Members and Tasks
-- **Team Member 1 (Lead)**: Handles coordination, main branch, and documentation.
-- **Team Member 2**: Reflection Process Feature...
+- **Team Member 1**: TBD (To be Discussed)
+- **Team Member 2**: TBD 
+- **Team Member 3**: TBD
+- **Team Member 4**: TBD
+- **Team Member 5**: TBD
+- **Team Member 6**: TBD
