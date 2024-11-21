@@ -1,5 +1,12 @@
 # IDEA WebApp Documentation
 
+# TO-DO
+
+### Kaushik
+- [ ] [ Setup React-Vite Project ](https://github.com/Peterborough-DEI-Project/IDEA-Toolkit/issues/1)
+### Carlos
+- [ ] [Setup Supabase](https://github.com/Peterborough-DEI-Project/IDEA-Toolkit/issues/2)
+
 ## Project Overview
 The IDEA WebApp is designed to help City of Peterborough staff apply an Inclusion, Diversity, Equity, and Accessibility (IDEA) lens...
 
