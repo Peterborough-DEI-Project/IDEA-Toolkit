@@ -4,7 +4,7 @@
 
 ### Kaushik
 - [ ] [ Setup React-Vite Project ](https://github.com/Peterborough-DEI-Project/IDEA-Toolkit/issues/1)
-- [ ] # React + Vite
+# React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
