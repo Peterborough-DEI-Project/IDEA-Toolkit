@@ -5,10 +5,10 @@
 ## 📝 TO-DO
 
 ### 👨‍💻 **Kaushik**
-- [ ] [Setup React-Vite Project](https://github.com/Peterborough-DEI-Project/IDEA-Toolkit/issues/1)
+- [x] [Setup React-Vite Project](https://github.com/Peterborough-DEI-Project/IDEA-Toolkit/issues/1)
 
 ### 👨‍💻 **Carlos**
-- [ ] [Setup Supabase](https://github.com/Peterborough-DEI-Project/IDEA-Toolkit/issues/2)
+- [x] [Setup Supabase](https://github.com/Peterborough-DEI-Project/IDEA-Toolkit/issues/2)
 
 ---
 
