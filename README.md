@@ -22,6 +22,12 @@ Currently, two official plugins are available:
 
 ---
 
+## Steps To Get Started
+1. Install VS Code, Node.JS, Git
+2. Login to github on VSCode and clone this repo
+3. Open the repo, cd to IDEA-Toolkit and run: npm install
+4. To start up the app, run: npm run dev
+
 ## 🌐 Project Overview
 
 The **IDEA WebApp** is designed to help **City of Peterborough staff** apply an **Inclusion, Diversity, Equity, and Accessibility (IDEA)** lens in their work.
