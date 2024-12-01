@@ -4,7 +4,6 @@ import AuthedNav from '../Components/AuthedNav';
 const Dashboard = () => {
     return (
         <div>
-            <AuthedNav />
             <h1>Dashboard</h1>
         </div>
     );

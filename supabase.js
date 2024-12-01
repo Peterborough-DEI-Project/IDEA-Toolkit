@@ -17,6 +17,7 @@ async function signOut() {
       console.error('Error signing in:', error.message);
     } else {
       console.log('Successfully signed in:', data);
+      console.log(data.user.email);
     }
   }
 

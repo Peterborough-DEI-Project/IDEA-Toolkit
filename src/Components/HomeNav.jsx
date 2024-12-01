@@ -1,22 +1,41 @@
 import React from 'react';
-import { Link } from 'react-router';
-import {Avatar, Dropdown, Navbar} from 'flowbite-react';
+import {Avatar, Dropdown, Navbar, Button} from 'flowbite-react';
+import { NavLink } from 'react-router';
+import { signOut } from '../../supabase';
 
-const HomeNav = () => {
+const HomeNav = ({ session, setSession }) => {
     const [currentPage, setCurrentPage] = React.useState('');
 
-    React.useEffect(() => {
-        setCurrentPage(window.location.pathname);
-    }, []);
+    const handleSignOut = async () => {
+        await signOut();
+        setSession(null);
+    };
+
 
     return (
-        <Navbar>
+        <Navbar >
             <Navbar fluid rounded>
-                <Navbar.Link href="/home"
-               className='text-black'
-                >
-                Home
-                </Navbar.Link>
+                <NavLink to="/home">
+                    Home
+                </NavLink>
+                <NavLink to="/About">
+                About
+                </NavLink>
+                <NavLink to="/blog">
+                Blog
+                </NavLink>
+                <NavLink to="/DEI">
+                DEI
+                </NavLink>
+                {session ? (
+                    <Button className="text-indigo-500" onClick={handleSignOut}>
+                        Sign Out
+                    </Button>
+                ) : (
+                    <NavLink to="/login">
+                        <Button className="text-indigo-500">Sign In</Button>
+                    </NavLink>
+                )}
             </Navbar>
         </Navbar>
     );
