@@ -1,14 +1,9 @@
-import { useState } from 'react'
-import Login from './Pages/Login'
 
-function App() {
-  const [count, setCount] = useState(0)
+import Routing from './Utils/Routes'
 
+export default function App() {
   return (
-    <>
-    <Login />
-    </>
+    <Routing />
   )
-}
 
-export default App
+}
