@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router';
 import HomeNav from '../Components/HomeNav';
 import blog from '../assets/blog.webp';
 
-const Blog = () => {
+const Blog = ({ session }) => {
+    const navigate = useNavigate();
     const [selectedCategory, setSelectedCategory] = useState('All');
 
     // Sample blog data
@@ -48,7 +50,7 @@ const Blog = () => {
         <div className="min-h-screen bg-gray-50">
             {/* Hero Section */}
             <div className="relative h-[60vh]">
-                <HomeNav />
+                <HomeNav session={session} />
                 <img 
                     src={blog}
                     alt="Blog Banner" 
@@ -62,7 +64,17 @@ const Blog = () => {
                     className="absolute inset-0 flex flex-col justify-center items-center text-white px-4"
                 >
                     <h1 className="text-6xl font-bold mb-4 text-center">Our Blog</h1>
-                    <p className="text-xl max-w-2xl text-center">Stories, updates, and insights from the heart of Peterborough</p>
+                    <p className="text-xl max-w-2xl text-center mb-6">Stories, updates, and insights from the heart of Peterborough</p>
+                    {session && (
+                        <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            onClick={() => navigate('/blog/edit')}
+                            className="bg-blue-600 text-white px-6 py-3 rounded-full font-medium hover:bg-blue-700 transition-colors"
+                        >
+                            Create New Post
+                        </motion.button>
+                    )}
                 </motion.div>
             </div>
 
