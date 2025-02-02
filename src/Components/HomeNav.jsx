@@ -60,6 +60,15 @@ const HomeNav = ({ session, setSession }) => {
                     <NavLink to="/blog" className={getLinkClass}>
                         Blog
                     </NavLink>
+                    <NavLink to="/blogedit" className={getLinkClass}>
+                        Blog Edit
+                    </NavLink>
+                    <NavLink to="/assessment" className={getLinkClass}>
+                        Assessment
+                    </NavLink>
+                    <NavLink to="/dashboard" className={getLinkClass}>
+                        Dashboard
+                    </NavLink>
                     
                     {/* Login Button */}
                     {session ? (

@@ -38,15 +38,18 @@ const BlogEdit = ({ session }) => {
 
     return (
         <div className="min-h-screen relative">            
-            <HomeNav session={session} />
             {/* Background image with overlay */}
-            <div className="fixed inset-0 z-0">
+            <div className="fixed inset-0" style={{ zIndex: 0 }}>
                 <img 
                     src={blog}
                     alt="Blog Banner" 
                     className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0"></div>
+            </div>
+
+            <div className="relative" style={{ zIndex: 50 }}>
+                <HomeNav session={session} />
             </div>
 
             {/* Content container */}
