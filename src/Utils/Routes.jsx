@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {Home, Dashboard, Login, DEI, Blog, About, BlogEdit} from '../Pages/pages';
+import {Home, Dashboard, Login, DEI, Blog, About, BlogEdit, Assessment} from '../Pages/pages';
 import { BrowserRouter as Router, Route, Outlet, Routes, Navigate } from 'react-router';
 import { supabase } from '../../supabase';
 import { Spinner } from 'flowbite-react';
@@ -37,10 +37,12 @@ const Routing = ({ session, setSession }) => {
                 <Route path="/dei"element={<DEI/>}/>
                 <Route path="/blog"element={<Blog/>}/>
                 <Route path="/blogedit"element={<BlogEdit/>}/>
+                <Route path="/assessment"element={<Assessment/>}/>
+                <Route path="/dashboard"element={<Dashboard/>}/>
+                
                 
 
                 <Route element={<ProtectedRoutes session={session}/>} path="/">
-                <Route element={<Dashboard />} path="/dashboard" />
                 <Route element={<Navigate to="/dashboard"/>} path="/*" />
                 </Route>
             </Routes>
