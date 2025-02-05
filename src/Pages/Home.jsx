@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import HomeNav from '../Components/HomeNav';
 import banner from '../assets/ptbo.jpg';
-import blog from '../assets/blog.webp';
 import { NavLink } from 'react-router';
 import { useNavigate } from 'react-router';
 
