@@ -4,9 +4,13 @@ import HomeNav from '../Components/HomeNav';
 import banner from '../assets/ptbo.jpg';
 import { NavLink } from 'react-router';
 import { useNavigate } from 'react-router';
+import { useState } from "react";
+
 
 const Home = () => {
     const navigate = useNavigate();
+    const [openStep, setOpenStep] = useState(null);
+
 
     const features = [
         {
@@ -63,23 +67,53 @@ const Home = () => {
                 />
                 <div className="absolute inset-0 bg-black opacity-40"></div>
                 <motion.div 
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    className="absolute inset-0 flex flex-col justify-center items-center text-white px-4"
-                >
-                    <h1 className="text-6xl font-bold mb-4 text-center">Welcome to Peterborough</h1>
-                    <p className="text-xl mb-8 max-w-2xl text-center">Discover the heart of Ontario's Kawarthas - where nature meets culture in perfect harmony.</p>
-                    <NavLink to='/About'>
-                        <motion.button 
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full text-lg font-semibold"
-                        >
-                            Explore More
-                        </motion.button>
-                    </NavLink>
-                </motion.div>
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.8 }}
+    className="absolute inset-0 flex flex-col justify-center items-center text-white px-4"
+>
+    <h1 className="text-6xl font-bold mb-4 text-center">Welcome to IntelliDEI</h1>
+    <p className="text-xl mb-8 max-w-2xl text-center">
+    A tool designed to help City staff apply DEI principles effectively and meaningfully in their work.
+    </p>
+    <NavLink to='/About'>
+        <motion.button 
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full text-lg font-semibold"
+        >
+            Learn More
+        </motion.button>
+    </NavLink>
+</motion.div>
+
+            </div>
+
+            
+
+            {/* What is DEI and IIDEA Section */}
+            <div className="py-20 bg-gradient-to-br from-purple-50 to-blue-50">
+                <div className="container mx-auto px-4">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                        viewport={{ once: true }}
+                        className="text-center mb-16"
+                    >
+                        <h2 className="text-4xl font-bold mb-4">What is DEI and IIDEA?</h2>
+                        <p className="text-xl text-gray-600 w-full text-center mb-4">
+                        DEI is the acronym for Diversity, Equity, and Inclusion. IIDEA is a similar (but shuffled) acronym that incorporates Indigeneity and Accessibility. At the City of Peterborough, DEI, Accessibility, and Indigenous Relations are areas of work that are each given the respect and attention needed through their respective City Advisors. Together, the three Advisors work as the IIDEA Team to support City staff in applying a wider inclusion lens to their work. </p>
+                        <p className="text-xl text-gray-600 w-full text-center mb-4">
+Diversity is the presence of difference within a given setting. Differences can arise in our appearances, thoughts, likes and dislikes, values, and identities. Diversity may also relate to social categories such as relate to gender, race, ethnicity, religion, nationality, education, marital status, sexual orientation, ability, and socioeconomic status, to name a few.
+While equality means sameness, equity means fairness – fair treatment, fair access, fair opportunity and fair advancement for all people. Equity is an approach that ensures everyone is supported in their personal and professional development. Unlike equality, equity does not aim to treat all individuals in the exact same way. Instead, equity recognizes that advantages and barriers exist, and that as a result, different people have different needs. Equity is therefore about ensuring that people have equal access to resources and benefits despite their individual circumstances.</p>
+<p className="text-xl text-gray-600 w-full text-center mb-4">
+Inclusion is the act of creating environments where people feel like they can bring their authentic selves. It means everyone feels valued, respected, and appreciated for their unique identities, even when they’re different from others. Inclusion outcomes are met when you, your institution, your policies and programs are truly inviting to all. And extends to the degree in which diverse individuals are able to participate in decision-making processes and development opportunities.
+It is important to remember that Inclusion is not a natural consequence of diversity and that equity issues can often be invisible until we intentionally do the work to address them.
+
+                        </p>
+                    </motion.div>
+                </div>
             </div>
 
             {/* Features Section */}
@@ -118,6 +152,78 @@ const Home = () => {
                 </div>
             </div>
 
+          {/* About the Tool Section */}
+<div className="py-20">
+    <div className="container mx-auto px-4">
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+        >
+            <h2 className="text-4xl font-bold mb-4">About the Tool</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+                This tool is designed to help City staff apply a Diversity, Equity, and Inclusion (DEI) lens to their work. It provides structured guidance, reflective prompts, and reporting capabilities to enhance inclusive decision-making.
+            </p>
+            
+            {/* Step-by-Step Interactive Process */}
+            <div className="mt-10 max-w-2xl mx-auto text-left text-x1">
+                {[
+                    {
+                        step: "1️⃣ Log In & Explore Modules",
+                        details: "Access DEI learning modules designed for different municipal roles. Get personalized content based on department and job function."
+                    },
+                    {
+                        step: "2️⃣ Engage with Reflection Prompts & Activities",
+                        details: "Answer scenario-based prompts to think critically about DEI in daily tasks. Participate in exercises that challenge biases and encourage inclusivity."
+                    },
+                    {
+                        step: "3️⃣ Track Progress & Generate Reports",
+                        details: "Get insights on individual and departmental DEI engagement. Use data-driven reports to inform policies and decision-making."
+                    },
+                    {
+                        step: "4️⃣ Apply Learnings in Real-World Contexts",
+                        details: "Implement DEI best practices in municipal services, planning, and community engagement. Use IntelliDEI as a reference tool for projects and initiatives."
+                    }
+                ].map((item, index) => (
+                    <motion.div 
+                        key={index} 
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: index * 0.2 }}
+                        className="border-b border-gray-300 py-4"
+                    >
+                        <button 
+                            className="w-full text-left font-semibold text-lg text-blue-600 focus:outline-none text-x1" 
+                            onClick={() => setOpenStep(openStep === index ? null : index)}
+                        >
+                            {item.step}
+                        </button>
+                        {openStep === index && (
+                            <p className="text-2x1 mt-2">{item.details}</p>
+                        )}
+                    </motion.div>
+                ))}
+            </div>
+            
+            <div className="mt-10 flex justify-center">
+                <NavLink to='/Login'>
+                    <motion.button 
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full text-lg font-semibold"
+                    >
+                        IntelliDEI
+                    </motion.button>
+                </NavLink>
+            </div>
+        </motion.div>
+    </div>
+</div>
+
+
+
             {/* Stats Section */}
             <div className="py-20 bg-gradient-to-br from-purple-50 to-blue-50">
                 <div className="container mx-auto px-4">
@@ -134,36 +240,13 @@ const Home = () => {
                                 <div className="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-blue-600 mb-2">
                                     {item.number}
                                 </div>
-                                <h3 className="text-xl font-semibold mb-2">{item.label}</h3>
-                                <p className="text-gray-600">{item.description}</p>
+                                <h3 className="text-xl font-semibold text-gray-700">{item.label}</h3>
+                                <p className="text-lg text-gray-500">{item.description}</p>
                             </motion.div>
                         ))}
                     </div>
                 </div>
             </div>
-
-            {/* Call to Action */}
-            <motion.div 
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                className="py-20 bg-gradient-to-r from-purple-600 to-blue-600"
-            >
-                <div className="container mx-auto px-4 text-center text-white">
-                    <h2 className="text-4xl font-bold mb-6">Ready to Transform Your Approach?</h2>
-                    <p className="text-xl mb-8 max-w-2xl mx-auto">
-                        Join us in creating a more inclusive, diverse, equitable, and accessible workplace.
-                    </p>
-                    <motion.button 
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={() => navigate('/login')}
-                        className="bg-white text-purple-600 px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg"
-                    >
-                        Get Started Today
-                    </motion.button>
-                </div>
-            </motion.div>
         </div>
     );
 };
