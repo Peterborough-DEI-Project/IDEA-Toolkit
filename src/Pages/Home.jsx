@@ -116,41 +116,6 @@ It is important to remember that Inclusion is not a natural consequence of diver
                 </div>
             </div>
 
-            {/* Features Section */}
-            <div className="py-20">
-                <div className="container mx-auto px-4">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                        viewport={{ once: true }}
-                        className="text-center mb-16"
-                    >
-                        <h2 className="text-4xl font-bold mb-4">Key Features</h2>
-                        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                            Tools and resources designed to make embedding IDEA principles intuitive and engaging
-                        </p>
-                    </motion.div>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {features.map((feature, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                whileHover={{ y: -5 }}
-                                transition={{ duration: 0.5, delay: index * 0.2 }}
-                                viewport={{ once: true }}
-                                onClick={() => navigate(feature.link)}
-                                className={`bg-gradient-to-br ${feature.color} p-8 rounded-2xl cursor-pointer group backdrop-blur-sm border border-gray-200/20 hover:border-gray-200/40 transition-all duration-300`}
-                            >
-                                <div className="text-5xl mb-6 transform group-hover:scale-110 transition-transform duration-300">{feature.icon}</div>
-                                <h3 className="text-2xl font-bold mb-3">{feature.title}</h3>
-                                <p className="text-gray-600">{feature.description}</p>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            </div>
 
           {/* About the Tool Section */}
 <div className="py-20">
@@ -223,6 +188,41 @@ It is important to remember that Inclusion is not a natural consequence of diver
 </div>
 
 
+            {/* Features Section */}
+            <div className="py-20">
+                <div className="container mx-auto px-4">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                        viewport={{ once: true }}
+                        className="text-center mb-16"
+                    >
+                        <h2 className="text-4xl font-bold mb-4">Key Features</h2>
+                        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+                            Tools and resources designed to make embedding IDEA principles intuitive and engaging
+                        </p>
+                    </motion.div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        {features.map((feature, index) => (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                whileHover={{ y: -5 }}
+                                transition={{ duration: 0.5, delay: index * 0.2 }}
+                                viewport={{ once: true }}
+                                onClick={() => navigate(feature.link)}
+                                className={`bg-gradient-to-br ${feature.color} p-8 rounded-2xl cursor-pointer group backdrop-blur-sm border border-gray-200/20 hover:border-gray-200/40 transition-all duration-300`}
+                            >
+                                <div className="text-5xl mb-6 transform group-hover:scale-110 transition-transform duration-300">{feature.icon}</div>
+                                <h3 className="text-2xl font-bold mb-3">{feature.title}</h3>
+                                <p className="text-gray-600">{feature.description}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </div>
 
             {/* Stats Section */}
             <div className="py-20 bg-gradient-to-br from-purple-50 to-blue-50">
