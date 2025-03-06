@@ -1,9 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import HomeNav from '../Components/HomeNav';
+import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom"
 import aboutBanner from '../assets/ptbo.jpg'; // Replace with your about banner image
 
-const About = () => {
+const About = ({ session }) => {
+    const navigate = useNavigate();
+    
     const stats = [
         { number: "200K+", label: "Residents" },
         { number: "1825", label: "Founded" },
@@ -38,7 +42,7 @@ const About = () => {
         <div className="min-h-screen bg-white">
             {/* Hero Section */}
             <div className="relative h-full">
-                <HomeNav />
+                <HomeNav session={session}/>
                 <img 
                     src="https://thekawarthas.ca/wp-content/uploads/2019/04/Nature-Lovers-lift-lock-960x640.jpg"
                     alt="About Banner" 

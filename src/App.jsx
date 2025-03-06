@@ -1,20 +1,16 @@
 import React, { useState} from 'react';
-import Routing from './Utils/Routes'
-import HomeNav from './Components/HomeNav'
-import { BrowserRouter } from 'react-router-dom'
+import Home from "./Pages/Home";
+import Login from './Pages/Login';
+import About from './Pages/About';
+import { useAuth } from './Components/AuthContext';
+import SignUp from './Pages/SignUp';
 
 export default function App() {
-  const [session, setSession] = useState(null);
+  const { session, user } = useAuth();
   return (
-    <BrowserRouter>
-    <div className='flex flex-col h-full w-full'>
-      <div className='sticky w-full'>
-        {/* <HomeNav session={session} setSession={setSession}/> */}
-      </div>
-      <div className='w-full min-h-[100vh]'>
-        <Routing session={session} setSession={setSession}/>         
-      </div>
-    </div>
-    </BrowserRouter>
-  )
+    <>
+      <Home session={session}/>
+    </>
+
+  );
 }

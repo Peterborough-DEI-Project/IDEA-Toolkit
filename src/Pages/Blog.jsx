@@ -69,7 +69,7 @@ const Blog = ({ session }) => {
                         <motion.button
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            onClick={() => navigate('/blog/edit')}
+                            onClick={() => navigate('/blog-edit')}
                             className="bg-blue-600 text-white px-6 py-3 rounded-full font-medium hover:bg-blue-700 transition-colors"
                         >
                             Create New Post
