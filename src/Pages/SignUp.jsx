@@ -128,10 +128,38 @@ const SignUp = () => {
                             </a>
                         </p>
                         {message.text && (
-                            <Alert color={message.type} className="mb-4">
-                                {message.text}
-                            </Alert>
-                        )}
+                                <motion.div
+                                    initial={{ opacity: 0, y: -20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: 20 }}
+                                    transition={{ 
+                                        type: "spring",
+                                        stiffness: 300,
+                                        damping: 20
+                                    }}
+                                    className="mt-4"
+                                >
+                                    <motion.div
+                                        whileHover={{ scale: 1.02 }}
+                                        className={`p-4 rounded-lg shadow-lg border-l-4 ${
+                                            message.type === 'success' 
+                                                ? 'bg-green-100 border-green-500 text-green-700'
+                                                : 'bg-red-100 border-red-500 text-red-700'
+                                        } flex items-center space-x-3`}
+                                    >
+                                        {message.type === 'success' ? (
+                                            <svg className="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                                            </svg>
+                                        ) : (
+                                            <svg className="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                                            </svg>
+                                        )}
+                                        <span className="font-medium">{message.text}</span>
+                                    </motion.div>
+                                </motion.div>
+                            )}
                     </form>
                 </motion.div>
             </div>

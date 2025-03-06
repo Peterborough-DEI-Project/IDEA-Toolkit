@@ -22,23 +22,29 @@ export const AuthContextProvider = ({children}) => {
 
 
     // sign in
-    const signInUser = (email, password) => {
-        try{
-            const {data, error} = supabase.auth.signInWithPassword({
-                email: email,
-                password: password,
-                options:{
-                    emailRedirectTo: window.location.origin + "/dashboard",
-                }
-            });
-            if (error){
-                console.error("There was a sign in error!", error);
-            }
-            console.log("sing-in success!!!", data);
-            return {success: true, data};
-        }
-        catch(error){
-            console.error("There was an error!", error);
+    const signInUser = async (email, password) => {
+        try {
+          const { data, error } = await supabase.auth.signInWithPassword({
+            email: email.toLowerCase(),
+            password: password,
+          });
+    
+          // Handle Supabase error explicitly
+          if (error) {
+            console.error("Sign-in error:", error.message); // Log the error for debugging
+            return { success: false, error: error.message }; // Return the error
+          }
+    
+          // If no error, return success
+          console.log("Sign-in success:", data);
+          return { success: true, data }; // Return the user data
+        } catch (error) {
+          // Handle unexpected issues
+          console.error("Unexpected error during sign-in:", err.message);
+          return {
+            success: false,
+            error: "An unexpected error occurred. Please try again.",
+          };
         }
     };
 
