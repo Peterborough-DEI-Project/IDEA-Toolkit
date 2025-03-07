@@ -1,22 +1,33 @@
-import React, { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { supabase } from '../../supabase';
-import { Button, Label, TextInput, Alert } from 'flowbite-react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { supabase } from '../supabaseClient';
+import { Button, Label, TextInput } from 'flowbite-react';
 import { motion } from 'framer-motion';
 import homeBanner from '../assets/ptbo.jpg';
 import HomeNav from '../Components/HomeNav';
 
 const ResetPassword = () => {
-    const location = useLocation();
     const navigate = useNavigate();
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState({ type: '', text: '' });
 
-    // Get tokens from location state (passed from AuthCallback)
-    const accessToken = location.state?.accessToken;
-    const refreshToken = location.state?.refreshToken;
+    useEffect(() => {
+        // Check if we have a hash fragment in the URL (from password reset email)
+        const hash = window.location.hash;
+        if (hash && hash.includes('type=recovery')) {
+            // The recovery token is automatically handled by Supabase
+            // We just need to show the password reset form
+            console.log('Password reset flow detected');
+        } else {
+            // If no hash, user might have navigated here directly
+            setMessage({ 
+                type: 'failure', 
+                text: 'Invalid password reset link. Please request a new one.' 
+            });
+        }
+    }, []);
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -39,14 +50,6 @@ const ResetPassword = () => {
         setLoading(true);
         
         try {
-            // First set the session with the tokens
-            if (accessToken && refreshToken) {
-                await supabase.auth.setSession({
-                    access_token: accessToken,
-                    refresh_token: refreshToken,
-                });
-            }
-            
             // Update the password
             const { error } = await supabase.auth.updateUser({
                 password: password
@@ -70,30 +73,11 @@ const ResetPassword = () => {
             console.error('Error resetting password:', error);
             setMessage({ 
                 type: 'failure', 
-                text: error.message || 'An error occurred while resetting your password. Please try again.' 
+                text: error.message || 'Failed to reset password. Please try again.' 
             });
         } finally {
             setLoading(false);
         }
-    }
-
-    // If no tokens are available, show an error
-    if (!accessToken || !refreshToken) {
-        return (
-            <div className="min-h-screen flex items-center justify-center bg-gray-100">
-                <div className="bg-white p-8 rounded-lg shadow-md max-w-md w-full">
-                    <h2 className="text-2xl font-bold mb-6 text-center">Reset Password</h2>
-                    <Alert color="failure">
-                        Invalid or expired reset link. Please request a new password reset.
-                    </Alert>
-                    <div className="mt-6 text-center">
-                        <Button onClick={() => navigate('/login')}>
-                            Back to Login
-                        </Button>
-                    </div>
-                </div>
-            </div>
-        );
     }
 
     return (
@@ -118,18 +102,12 @@ const ResetPassword = () => {
                 >
                     <h2 className="text-3xl font-bold text-white mb-6 text-center">Reset Password</h2>
                     
-                    {message.text && (
-                        <Alert color={message.type} className="mb-4">
-                            {message.text}
-                        </Alert>
-                    )}
-                    
                     <form 
                         className='flex flex-col gap-4'
                         onSubmit={handleSubmit}
                     >
                         <div>
-                            <Label 
+                            <Label
                                 htmlFor="password" 
                                 value="New Password"
                                 className="text-white mb-2 block"
@@ -147,7 +125,7 @@ const ResetPassword = () => {
                         <div>
                             <Label 
                                 htmlFor="confirmPassword" 
-                                value="Confirm New Password"
+                                value="Confirm Password"
                                 className="text-white mb-2 block"
                             />
                             <TextInput
@@ -160,12 +138,13 @@ const ResetPassword = () => {
                                 className="w-full"
                             />
                         </div>
+                        
                         <motion.div
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
                         >
                             <Button
-                                className='w-full bg-indigo-500 hover:bg-indigo-600 text-white transition-colors duration-300 mt-4'
+                                className='w-full bg-gradient-to-r from-indigo-500 to-indigo-600 hover:from-indigo-600 hover:to-indigo-700 text-white transition-all duration-300 shadow-lg hover:shadow-xl rounded-lg py-2.5 mt-4'
                                 type="submit"
                                 disabled={loading}
                                 isProcessing={loading}
@@ -173,6 +152,40 @@ const ResetPassword = () => {
                                 Reset Password
                             </Button>
                         </motion.div>
+                        
+                        {message.text && (
+                            <motion.div
+                                initial={{ opacity: 0, y: -20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: 20 }}
+                                transition={{ 
+                                    type: "spring",
+                                    stiffness: 300,
+                                    damping: 20
+                                }}
+                                className="mt-4"
+                            >
+                                <motion.div
+                                    whileHover={{ scale: 1.02 }}
+                                    className={`p-4 rounded-lg shadow-lg border-l-4 ${
+                                        message.type === 'success' 
+                                            ? 'bg-green-100/90 border-green-500 text-green-700'
+                                            : 'bg-red-100/90 border-red-500 text-red-700'
+                                    } flex items-center space-x-3`}
+                                >
+                                    {message.type === 'success' ? (
+                                        <svg className="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    ) : (
+                                        <svg className="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                    )}
+                                    <span className="font-medium">{message.text}</span>
+                                </motion.div>
+                            </motion.div>
+                        )}
                     </form>
                 </motion.div>
             </div>

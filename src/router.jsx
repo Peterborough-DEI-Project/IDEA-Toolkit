@@ -12,6 +12,7 @@ import BlogEdit from "./Pages/BlogEdit";
 import Assessment from "./Pages/Assessment";
 import VerifyEmail from "./Pages/VerifyEmail";
 import Leaderboard from "./Pages/Leaderboard";
+import ResetPassword from "./Pages/ResetPassword";
 import { useAuth } from "./Components/AuthContext";
 
 // We need to create a wrapper component that passes the session to the About component
@@ -41,6 +42,7 @@ export const router = createBrowserRouter(
   { path: "/about", element: <AboutWithSession /> },
   { path: "/dei", element: <DEIWithSession /> },
   { path: "/blog", element: <BlogWithSession /> },
+  { path: "/reset-password", element: <ResetPassword /> },
   { path: "/signup", element: <Signup /> },
   { path: "/login", element: <Login /> },
   { path: "/verify-email", element: <VerifyEmail /> },

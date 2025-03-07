@@ -150,8 +150,44 @@ export const AuthContextProvider = ({children}) => {
         }
     };
 
+    // Send password reset email
+    const sendPasswordResetEmail = async (email) => {
+        try {
+            const { error } = await supabase.auth.resetPasswordForEmail(email, {
+                redirectTo: `${window.location.origin}/reset-password`,
+            });
+
+            if (error) {
+                console.error("Password reset email error:", error.message);
+                return { success: false, error };
+            }
+            return { success: true };
+        } catch (error) {
+            console.error("Exception during password reset email:", error);
+            return { success: false, error };
+        }
+    };
+
+    // Update password
+    const updatePassword = async (newPassword) => {
+        try {
+            const { error } = await supabase.auth.updateUser({
+                password: newPassword
+            });
+
+            if (error) {
+                console.error("Password update error:", error.message);
+                return { success: false, error };
+            }
+            return { success: true };
+        } catch (error) {
+            console.error("Exception during password update:", error);
+            return { success: false, error };
+        }
+    };
+
     return(
-        <AuthContext.Provider value={{session, signUpNewUser, signInUser, signOut, getLeaderboard, addTestScore, signInWithGoogle}}>
+        <AuthContext.Provider value={{session, signUpNewUser, signInUser, signOut, getLeaderboard, addTestScore, signInWithGoogle, sendPasswordResetEmail, updatePassword}}>
             {children}
         </AuthContext.Provider>
     );
