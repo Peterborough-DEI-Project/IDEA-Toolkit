@@ -82,7 +82,7 @@ const Home = () => {
             whileTap={{ scale: 0.95 }}
             className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full text-lg font-semibold"
         >
-            Learn More
+             DEI at the City
         </motion.button>
     </NavLink>
 </motion.div>
@@ -166,28 +166,12 @@ It is important to remember that Inclusion is not a natural consequence of diver
                             {item.step}
                         </button>
                         {openStep === index && (
-                            <p className="text-2x1 mt-2">{item.details}</p>
+                            <p className="text-x1 mt-2">{item.details}</p>
                         )}
                     </motion.div>
                 ))}
             </div>
             
-            <div className="mt-10 flex justify-center">
-                <NavLink to='/Login'>
-                    <motion.button 
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full text-lg font-semibold"
-                    >
-                        IntelliDEI
-                    </motion.button>
-                </NavLink>
-            </div>
-        </motion.div>
-    </div>
-</div>
-
-
             {/* Features Section */}
             <div className="py-20">
                 <div className="container mx-auto px-4">
@@ -223,6 +207,22 @@ It is important to remember that Inclusion is not a natural consequence of diver
                     </div>
                 </div>
             </div>
+            <div className="mt-10 flex justify-center">
+                <NavLink to='/Login'>
+                    <motion.button 
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full text-lg font-semibold"
+                    >
+                        See Tool
+                    </motion.button>
+                </NavLink>
+            </div>
+        </motion.div>
+    </div>
+</div>
+
+
 
             {/* Stats Section */}
             <div className="py-20 bg-gradient-to-br from-purple-50 to-blue-50">
