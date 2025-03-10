@@ -10,6 +10,15 @@
 ### 👨‍💻 **Carlos**
 - [x] [Setup Supabase](https://github.com/Peterborough-DEI-Project/IDEA-Toolkit/issues/2)
 
+
+## Team Members and Tasks
+- **Team Member 1**: Ankush (To be Discussed)
+- **Team Member 2**: Arpan 
+- **Team Member 3**: Carlos
+- **Team Member 4**: Kaushik
+- **Team Member 5**: Vedarth
+- **Team Member 6**: Vishal
+=======
 ---
 
 ## ⚛️ React + Vite
@@ -44,20 +53,3 @@ Provides feedback based on staff responses, ensuring exclusion is minimized duri
 
 ### 📊 **Annual Reporting Tool**
 Tracks the implementation of IDEA principles and helps staff report annually on their progress with actionable insights.
-
----
-
-## 👥 Team Members and Tasks
-
-| **Team Member**      | **Task**                |
-|-----------------------|-------------------------|
-| Team Member 1         | *To Be Discussed (TBD)* |
-| Team Member 2         | *TBD*                   |
-| Team Member 3         | *TBD*                   |
-| Team Member 4         | *TBD*                   |
-| Team Member 5         | *TBD*                   |
-| Team Member 6         | *TBD*                   |
-
----
-
-🎉 Stay tuned for updates as we continue building the **IDEA WebApp** to empower inclusive decision-making!
