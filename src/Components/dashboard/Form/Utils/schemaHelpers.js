@@ -1,9 +1,7 @@
-import {
-  coreFieldSchema,
-  fieldTypes,
-  typeSpecificSchemaProperties,
-} from "./formSchemas.js";
+
 import { v4 as uuidv4 } from "uuid";
+
+// Verifies that important fields are filled (form builder)
 const validateSchema = (formSchema) => {
   let newErrors = {};
   if (!formSchema.title?.trim()) {
@@ -16,6 +14,8 @@ const validateSchema = (formSchema) => {
         title: "Required",
       };
     }
+
+    // Checks that multiple choice groups have at least one option
     if (
       (field.type === "checkboxGroup" || field.type === "radioGroup") &&
       (!field.options || field.options.length === 0)

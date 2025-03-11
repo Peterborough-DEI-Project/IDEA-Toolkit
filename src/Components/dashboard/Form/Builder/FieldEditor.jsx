@@ -29,7 +29,7 @@ FieldEditor.propTypes = {
     description: PropTypes.string.isRequired,
     type: PropTypes.oneOf(fieldTypes),
     options: PropTypes.array,
-    required: PropTypes.bool.isRequired,
+    isRequired: PropTypes.bool.isRequired,
     validation: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.string.isRequired,
@@ -43,7 +43,7 @@ FieldEditor.propTypes = {
   index: PropTypes.string.isRequired,
   onDelete: PropTypes.func.isRequired,
   errors: PropTypes.object,
-  removeError: PropTypes.func.isRequired,
+  resetError: PropTypes.func,
 };
 
 function FieldEditor({
@@ -52,20 +52,20 @@ function FieldEditor({
   index,
   onDelete,
   errors,
-  removeError,
+                       resetError,
 }) {
   const editTitle = (e) => {
     onChange(index, modifyTitle(field, e.target.value));
-    removeError(index, "title");
+    resetError(index, "title");
   };
   const editDescription = (e) => {
     onChange(index, modifyDescription(field, e.target.value));
-    removeError(index, "description");
+    resetError(index, "description");
   };
 
   const handleChangeType = (e) => {
     onChange(index, changeType(field, e.target.value));
-    removeError(index, "input");
+    resetError(index, "input");
   };
   const handleChangeIsRequired = (e) => {
     onChange(index, modifyIsRequired(field, e.target.checked));
@@ -73,7 +73,7 @@ function FieldEditor({
 
   const handleChangeInput = (newFieldValue) => {
     onChange(index, newFieldValue);
-    removeError(index, "input");
+    resetError(index, "input");
   };
 
   const handleUpdateValidation = (e, validationIndex) => {
@@ -94,6 +94,7 @@ function FieldEditor({
   return (
     <>
       <Root>
+        {/*Title and description*/}
         <Head>
           <TextField
             error={!!errors[index]?.title}
@@ -112,6 +113,8 @@ function FieldEditor({
             size="sm"
           />
         </Head>
+
+        {/*Actual input area of the field (a preview)*/}
         <Body>
           <Collapse in={!!errors[index]?.input}>
             <Alert sx={{ mb: 2 }} severity="error">
@@ -125,6 +128,7 @@ function FieldEditor({
             editorMode={true}
           />
 
+          {/*Validation rules and options*/}
           {field.validation?.map((option, validationIndex) => (
             <Stack
               direction="row"
@@ -148,6 +152,7 @@ function FieldEditor({
             </Stack>
           ))}
         </Body>
+        {/*Global options, like if the field is required*/}
         <Foot>
           <Stack
             direction="row"
@@ -170,7 +175,6 @@ function FieldEditor({
             <Stack direction="row">
               <FormControlLabel
                 control={<Switch />}
-                checked={field.required}
                 label="Required"
                 onChange={handleChangeIsRequired}
               />

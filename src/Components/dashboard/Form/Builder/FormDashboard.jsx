@@ -1,22 +1,21 @@
-import { useEffect, useState } from "react";
-import Backdrop from "@mui/material/Backdrop";
-import CircularProgress from "@mui/material/CircularProgress";
-import { Box, Container } from "@mui/material";
-import Sidebar from "./Sidebar.jsx";
+import {useCallback, useEffect, useState} from "react";
+import { Box, Container, Backdrop, CircularProgress } from "@mui/material";
+import { insertAssessmentData } from "./dev/__testqueries__.js";
+import { useAlert } from "../../../../Utils/AlertProvider.jsx"
 import FormDashboardRouter from "./FormDashboardRouter.jsx";
 import useFormBuilder from "../Utils/useFormBuilder.js";
-import { insertAssessmentData } from "./dev/__testqueries__.js";
-import { useParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
 import { getFullAssessment } from "/src/Utils/API.js";
-import AlertPopup from "../../../Generic/AlertPopup.jsx";
+import { useQuery } from "@tanstack/react-query";
+import { useParams } from "react-router-dom";
 import { redirect } from "react-router";
+import Sidebar from "./Sidebar.jsx";
 
 function FormDashboard() {
-  const { id } = useParams();
-  const [activeView, setActiveView] = useState(0);
-  const [alert, setAlert] = useState(null);
+  const { id } = useParams();                           // Checks the url for a form Id; fetches the relevant form
+  const [activeView, setActiveView] = useState(0);      // Used for navigating between form dashboard views
+  const [shouldQuery, setShouldQuery] = useState(true); // Temporary solution to prevent useQuery from fetching again
   const [loading, setLoading] = useState(null);
+  const { showAlert } = useAlert();
   const handleViewChange = (view) => {
     setActiveView(view);
   };
@@ -28,145 +27,75 @@ function FormDashboard() {
     removeField,
     handleFormChange,
     errors,
-    removeError,
+    resetError,
     validateSchema,
     setFormSchema,
   } = useFormBuilder();
 
-  const { data, error, isLoading, is } = useQuery({
+  const { data, error, isLoading, } = useQuery({
     queryFn: () => getFullAssessment(id),
     queryKey: ["assessment", id],
-    enabled: Boolean(id),
+    enabled: (Boolean(id) === true && shouldQuery === true),
   });
 
   useEffect(() => {
     if (data) {
       setFormSchema(data);
+      setShouldQuery(false)
     }
   }, [data, setFormSchema]);
 
-  const onSave = async () => {
-    // Opens an alert dialog -> promise is resolved based on which button the user clicks.
-    const userConfirmed = await new Promise((resolve) => {
-      setAlert({
-        title: "Save Changes",
-        description: "Changes will saved and only visible by you, continue?",
-        onClose: () => {
-          setAlert(null);
-          resolve(false);
-        },
-        onContinue: () => {
-          setAlert(null), resolve(true);
-        },
-      });
-    });
+  const handleSaveOrPublish = useCallback(
 
-    if (userConfirmed) {
-      //synchronous function
-      const isValid = validateSchema();
-      if (isValid === true) {
-        setLoading(true);
-        const error = await insertAssessmentData(
-          {
-            ...formSchema,
-            status: "draft",
-          },
-          data,
-        );
-        setLoading(false);
-        if (error) {
-          setAlert({
-            title: "Error",
-            description: `We weren't able to complete your request at this time. Please try again later or contact support.\n 'Message:' ${error.message}`,
-            onClose: () => {
-              setAlert(null);
-            },
-          });
-        } else {
-          setAlert({
-            title: "Success",
-            description: `Your changes have been saved successfully.`,
-            onClose: () => {
-              setAlert(null);
-              redirect("/dashboard/assessments");
-            },
-          });
+      // Wait for user response (continue or cancel)
+      async (status) => {
+        const userConfirmed = await new Promise((resolve) => {
+          showAlert(
+              status === "published" ? "Publish Changes" : "Save Changes",
+              status === "published"
+                  ? "Changes will be published and visible to employees."
+                  : "Changes will be saved and only visible by you.",
+              () => resolve(true), // Continue
+              () => resolve(false) // Close
+          );
+        });
+
+        // If continues, validates the form and then inserts into database
+        if (userConfirmed) {
+          const hasErrors = validateSchema();
+          if (!hasErrors) {
+            setLoading(true);
+            const error = await insertAssessmentData({
+              ...formSchema,
+              status,
+            });
+            setLoading(false);
+
+            // Alerts based on result of query
+            if (error) {
+              showAlert("Error", `We weren't able to complete your request. Please try again.\nMessage: ${error.message}`);
+            } else {
+              showAlert("Success", `Your changes have been ${status === "published" ? "published" : "saved"} successfully.`, () => {
+                redirect("/dashboard/assessments");
+              });
+            }
+          } else {
+            showAlert("Action Needed", "Please ensure that all highlighted fields are completed.");
+          }
         }
-      } else {
-        setAlert({
-          title: "Action Needed",
-          description:
-            "Please ensure that all highlighted fields are completed.",
-          onClose: () => {
-            setAlert(null);
-          },
-        });
-      }
-    }
-  };
+      },
+      [errors, formSchema, showAlert, validateSchema]
+  );
 
-  const onPublish = async () => {
-    const userConfirmed = await new Promise((resolve) => {
-      setAlert({
-        title: "Publish Changes",
-        description: "Changes will be published and visible to employees.",
-        onClose: () => {
-          setAlert(null);
-          resolve(false);
-        },
-        onContinue: () => {
-          setAlert(null), resolve(true);
-        },
-      });
-    });
-
-    if (userConfirmed) {
-      //synchronous function
-      const isValid = validateSchema();
-      if (isValid === true) {
-        setLoading(true);
-        const error = await insertAssessmentData({
-          ...formSchema,
-          status: "published",
-        });
-        setLoading(false);
-        if (error) {
-          setAlert({
-            title: "Error",
-            description: `We weren't able to complete your request at this time. Please try again later or contact support.\n 'Message:' ${error.message}`,
-            onClose: () => {
-              setAlert(null);
-            },
-          });
-        } else {
-          setAlert({
-            title: "Success",
-            description: `Your changes have been saved successfully.`,
-            onClose: () => {
-              setAlert(null);
-              redirect("/dashboard/assessments");
-            },
-          });
-        }
-      } else {
-        setAlert({
-          title: "Action Needed",
-          description:
-            "Please ensure that all highlighted fields are completed.",
-          onClose: () => {
-            setAlert(null);
-          },
-        });
-      }
-    }
-  };
 
   if (isLoading || loading) {
     return <BackDropOverlay loading={true} />;
   }
   return (
     <>
-      {/*<pre>{JSON.stringify(formSchema, null, 2)}</pre>*/}
+      <pre>
+        formSchema: {JSON.stringify(formSchema, null, 2)}
+      </pre>
       <Box sx={{ display: "flex", justifyContent: "center" }}>
         <Container maxWidth="md">
           <FormDashboardRouter
@@ -177,17 +106,16 @@ function FormDashboard() {
             removeField={removeField}
             handleFormChange={handleFormChange}
             errors={errors}
-            removeError={removeError}
+            resetError={resetError}
           />
         </Container>
         <Sidebar
           activeView={activeView}
           onNavigate={handleViewChange}
-          onSave={onSave}
-          onPublish={onPublish}
+          onSave={()=>handleSaveOrPublish("draft")}
+          onPublish={()=>handleSaveOrPublish("published")}
         />
       </Box>
-      {alert && <AlertPopup alert={alert} />}
     </>
   );
 }

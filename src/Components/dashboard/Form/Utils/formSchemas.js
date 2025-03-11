@@ -78,6 +78,7 @@ const typeSpecificSchemaProperties = {
   },
   boolean: {
     type: "boolean",
+    validation:[],
   },
 };
 

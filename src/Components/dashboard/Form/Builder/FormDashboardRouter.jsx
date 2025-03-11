@@ -10,7 +10,7 @@ FormDashboardRouter.propTypes = {
   removeField: PropTypes.func.isRequired,
   handleFormChange: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
-  removeError: PropTypes.func.isRequired,
+  resetError: PropTypes.func.isRequired,
 };
 
 function FormDashboardRouter({
@@ -21,7 +21,7 @@ function FormDashboardRouter({
   removeField,
   handleFormChange,
   errors,
-  removeError,
+  resetError,
   ...props
 }) {
   const activeView = subViews.find((view) => view.id === activeViewId);
@@ -34,7 +34,7 @@ function FormDashboardRouter({
       removeField={removeField}
       handleFormChange={handleFormChange}
       errors={errors}
-      removeError={removeError}
+      resetError={resetError}
     />
   ) : (
     <div>View Not Found</div>

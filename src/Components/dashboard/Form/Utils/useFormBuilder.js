@@ -1,137 +1,107 @@
-import { useEffect, useState } from "react";
-import { schema, defaultFieldSchemas } from "./formSchemas.js";
-import { v4 as uuidv4 } from "uuid";
-import { validateSchema as validationHelper } from "./schemaHelpers.js";
-import { useQuery } from "@tanstack/react-query";
-import { getAssessmentData } from "../Builder/dev/__testqueries__.js";
-
-let newId = 0;
+import {useState} from "react";
+import {defaultFieldSchemas} from "./formSchemas.js";
+import {v4 as uuidv4} from "uuid";
+import {validateSchema as validationHelper} from "./schemaHelpers.js";
 
 const useFormSchema = (data = null) => {
-  const [formSchema, setFormSchema] = useState(
-    data || {
-      id: uuidv4(),
-      title: "",
-      description: "",
-      isRequired: false,
-      fields: [],
-    },
-  );
-  const [errors, setErrors] = useState({});
-  const [loading, setLoading] = useState(false);
+    const [errors, setErrors] = useState({}); // State to manage validation errors
 
-  const addField = (type) => {
-    if (type) {
-      const newField = {
-        ...defaultFieldSchemas[type],
-        id: uuidv4(),
-      };
-
-      const test = {
-        ...formSchema,
-        fields: [...formSchema.fields, { ...newField }],
-      };
-
-      setFormSchema(test);
-      newId++;
-    }
-  };
-
-  const editField = (fieldId, updatedProperties) => {
-    if (
-      typeof formSchema.fields[fieldId] === "undefined" ||
-      typeof updatedProperties === "undefined"
-    ) {
-      return;
-    }
-
-    const newFields = [...formSchema.fields];
-    newFields[fieldId] = updatedProperties;
-
-    setFormSchema({ ...formSchema, fields: newFields });
-  };
-
-  const removeField = (fieldId) => {
-    if (typeof formSchema.fields[fieldId] === "undefined") {
-      throw new Error("Error updating field state");
-    }
-
-    const updatedFields = formSchema.fields.filter(
-      (_, index) => index !== Number(fieldId),
+    const [formSchema, setFormSchema] = useState(
+        data || {
+            id: uuidv4(), // Unique ID for the form schema
+            title: "", // Title of the form
+            description: "", // Description of the form
+            fields: [], // List of fields in the form
+        },
     );
-    setFormSchema({
-      ...formSchema,
-      fields: updatedFields,
-    });
-  };
 
-  const handleFormChange = (key, value) => {
-    setErrors((prevErrors) => ({
-      ...prevErrors,
-      [key]: "",
-    }));
+    // Used for handling changes to the form's properties (excludes fields)
+    const handleFormChange = (key, value) => {
+        resetError(key); // Clear any existing error for the key
 
-    setFormSchema((prevForm) => ({
-      ...prevForm,
-      [key]: value,
-    }));
-  };
+        setFormSchema((prev) => ({
+            ...prev,
+            [key]: value,
+        }));
+    };
 
-  const devClearAll = () => {
-    setFormSchema(schema);
-    newId = 0;
-  };
+    // Adds a new field to the form schema based on the provided type
+    const addField = (type) => {
+        if (!type) return;
 
-  const removeError = (index, key) => {
-    setErrors((prevErrors) => ({
-      ...prevErrors,
-      [index]: {
-        ...prevErrors[index],
-        [key]: "",
-      },
-    }));
-  };
+        setFormSchema((prev) => ({
+            ...prev,
+            fields: [...prev.fields, {
+                ...defaultFieldSchemas[type],   // Uses default schema for the specified field type
+                id: uuidv4(),                   // Assign a unique ID to the field
+            }],
+        }));
+    };
 
-  const onSave = () => {
-    const hasErrors = validateSchema(formSchema);
-    if (Object.entries(hasErrors)?.length > 0) {
-      setErrors(hasErrors);
-      return !hasErrors;
+    // Updates a specific field in the form schema by field ID
+    // Input must be the entire field
+    const editField = (fieldId, updatedProperties) => {
+        if (!updatedProperties) return;
+        setFormSchema((prev) => ({
+            ...prev,
+            fields: prev.fields.map((field, index) =>
+                index === Number(fieldId) ? {...field, ...updatedProperties} : field
+            ),
+        }));
+    };
+
+    // Removes a field by filtering out the specified Id
+    const removeField = (fieldId) => {
+        setFormSchema((prev) => ({
+            ...prev,
+            fields: prev.fields.filter((_, index) => index !== Number(fieldId)),
+        }));
+    };
+
+    // Resets error state for a specific key or field
+    const resetError = (index = null, key) => {
+        setErrors((prev) => {
+            if (key === undefined) {
+                return {
+                    ...prev,
+                    [index]: "", // Reset error for the given index
+                };
+            }
+            if (index !== null) {
+                return {
+                    ...prev,
+                    [index]: {
+                        ...prev[index],
+                        [key]: "", // Reset specific error based on key
+                    },
+                };
+            }
+            return {...prev, [key]: ""}; // Reset error for the given key
+        });
+    };
+
+    // Validates the form schema and updates error state
+    function validateSchema() {
+        let errorList = validationHelper(formSchema); // Get validation errors
+        if(Object.keys(errorList).length > 0){
+            setErrors(validationHelper(formSchema));
+            return true;
+        }
+        return false;
     }
-  };
 
-  const onPublish = () => {
-    const hasErrors = validateSchema();
-    return !hasErrors;
-  };
-
-  const validateSchema = () => {
-    const errors = validationHelper(formSchema);
-
-    if (Object.entries(errors)?.length > 0) {
-      setErrors(errors);
-      return false;
-    }
-
-    return true;
-  };
-
-  return {
-    formSchema,
-    setFormSchema,
-    addField,
-    editField,
-    removeField,
-    devClearAll,
-    handleFormChange,
-    errors,
-    removeError,
-    loading,
-    onSave,
-    onPublish,
-    validateSchema,
-    setLoading,
-  };
+    // Expose API for managing form schema
+    return {
+        formSchema,
+        setFormSchema,
+        addField,
+        editField,
+        removeField,
+        handleFormChange,
+        errors,
+        resetError,
+        validateSchema,
+    };
 };
 
 export default useFormSchema;

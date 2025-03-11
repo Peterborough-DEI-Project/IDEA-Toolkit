@@ -13,7 +13,7 @@ FormEditor.propTypes = {
   removeField: PropTypes.func.isRequired,
   handleFormChange: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
-  removeError: PropTypes.func.isRequired,
+  resetError: PropTypes.func.isRequired,
 };
 
 function FormEditor({
@@ -23,7 +23,7 @@ function FormEditor({
   removeField,
   handleFormChange,
   errors,
-  removeError,
+  resetError,
 }) {
   return (
     <>
@@ -51,7 +51,7 @@ function FormEditor({
             index={fieldId}
             onDelete={() => removeField(fieldId)}
             errors={errors}
-            removeError={removeError}
+            resetError={resetError}
           />
         ))}
 

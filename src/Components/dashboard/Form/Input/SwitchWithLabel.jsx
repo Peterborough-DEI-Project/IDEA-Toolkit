@@ -13,6 +13,7 @@ function SwitchWithLabel({ value, label, onChange }) {
     <FormControlLabel
       value={value}
       control={<Switch />}
+      disabled={true}
       label={label || "Question"}
       onChange={onChange}
     />

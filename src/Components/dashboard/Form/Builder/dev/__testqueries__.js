@@ -55,7 +55,7 @@ async function insertAssessmentData(payload, oldData = null) {
     }
   }
   if (fields) {
-    if (oldData.fields) {
+    if (oldData && oldData.fields) {
       let oldFieldIdSet = fields.map((field) => field.id);
       let fieldsToRemove = oldData.fields.filter(
         (field) => !oldFieldIdSet.includes(field.id),
