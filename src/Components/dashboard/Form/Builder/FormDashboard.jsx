@@ -88,7 +88,7 @@ function FormDashboard() {
 
     if (isLoading || loading) {
         return (
-            <Backdrop open={true} sx={{zIndex: 9999}}>
+            <Backdrop open={loading} sx={{zIndex: 9999}}>
                 <CircularProgress size={60}/>
             </Backdrop>
         );
