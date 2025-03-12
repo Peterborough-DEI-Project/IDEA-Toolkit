@@ -27,7 +27,7 @@ function OptionsEditor({ schemaField, onChange, editorMode = false }) {
         />
       )}
       {(editorMode === true ||
-        schemaField.validation?.find(
+        schemaField.validationRules?.find(
           (option) => option.id === "allowCustom",
         ) === true) && <AddInput onAdd={onChange.add} />}
     </>

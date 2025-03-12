@@ -33,7 +33,7 @@ function FieldRenderer({ fieldSchema, responseField, onChange }) {
           type={fieldSchema.type}
           value={responseField.value}
           options={fieldSchema.options}
-          validation={fieldSchema.validation ?? []}
+          validationRules={fieldSchema.validationRules ?? []}
           onChange={onChange}
         />
       </Body>

@@ -31,9 +31,6 @@ The `FormSubmitter` component dynamically generates a form based on a provided s
 - **FieldRenderer** renders each field using `formSchema.fields`.
 - A **Submit Button** (disabled when `onSubmit` is absent).
 
-## **Debugging**
-- Uncomment the `<pre>` tags inside the component to view the live `responseData` or `formSchema` state.
-
 ## **Todo**
 ### **Validation Logic**
 - Alert popup when a user attempts to submit an incomplete form

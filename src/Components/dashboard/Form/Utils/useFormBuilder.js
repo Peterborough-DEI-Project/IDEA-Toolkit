@@ -34,6 +34,7 @@ const useFormSchema = (data = null) => {
             fields: [...prev.fields, {
                 ...defaultFieldSchemas[type],   // Uses default schema for the specified field type
                 id: uuidv4(),                   // Assign a unique ID to the field
+                template_id: formSchema.id,
             }],
         }));
     };

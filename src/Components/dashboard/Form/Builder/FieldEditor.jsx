@@ -30,7 +30,7 @@ FieldEditor.propTypes = {
     type: PropTypes.oneOf(fieldTypes),
     options: PropTypes.array,
     isRequired: PropTypes.bool.isRequired,
-    validation: PropTypes.arrayOf(
+    validationRules: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.string.isRequired,
         value: PropTypes.bool.isRequired,
@@ -77,7 +77,7 @@ function FieldEditor({
   };
 
   const handleUpdateValidation = (e, validationIndex) => {
-    const test2 = field.validation.map((x, index) => {
+    const test2 = field.validationRules.map((x, index) => {
       if (index === validationIndex) {
         return { ...x, value: e.target.checked };
       }
@@ -85,7 +85,7 @@ function FieldEditor({
     });
     let test = {
       ...field,
-      validation: [...test2],
+      validationRules: [...test2],
     };
 
     onChange(index, test);
@@ -129,7 +129,7 @@ function FieldEditor({
           />
 
           {/*Validation rules and options*/}
-          {field.validation?.map((option, validationIndex) => (
+          {field.validationRules?.map((option, validationIndex) => (
             <Stack
               direction="row"
               key={validationIndex}

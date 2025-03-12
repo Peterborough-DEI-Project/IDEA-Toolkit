@@ -66,10 +66,10 @@ const addOption = (field, newValue) => {
   if (field.type !== "checkboxGroup" && field.type !== "radioGroup") {
     throw new Error("Error adding option, incorrect field type.");
   }
-  const newId = uuidv4();
+
   return {
     ...field,
-    options: [...field.options, { id: uuidv4(), label: newValue }],
+    options: [...field.options, { id: uuidv4(), fieldId: field.id,  value: newValue }],
   };
 };
 

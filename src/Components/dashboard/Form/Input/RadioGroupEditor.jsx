@@ -22,7 +22,7 @@ function RadioGroupEditor({ options, onRemove, editorMode = false }) {
             <FormControlLabel
               value={option}
               control={<Radio disabled={editorMode} />}
-              label={option.label}
+              label={option.value}
             />
           </Stack>
         ))}

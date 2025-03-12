@@ -27,7 +27,7 @@ export const selectionBaseShape = {
   options: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-      value: PropTypes.string.isRequired,
+      value: PropTypes.string,
     }),
   ),
 };

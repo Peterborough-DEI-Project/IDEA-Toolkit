@@ -1,9 +1,7 @@
-import PropTypes from "prop-types";
-import { v4 as uuidv4 } from "uuid";
-const schema = { id: "", title: "", description: "", fields: [] };
+
+// Defines the default shapes of the form schemas
 
 const fieldTypes = ["text", "radioGroup", "checkboxGroup", "boolean"];
-
 const coreFieldSchema = {
   id: "",
   title: "",
@@ -11,38 +9,9 @@ const coreFieldSchema = {
   isRequired: false,
 };
 
-function genBaseSchema() {
-  return {
-    id: uuidv4(),
-    title: "",
-    description: "",
-    isRequired: false,
-  };
-}
-
-const schemaPropTypes = {
-  title: PropTypes.string,
-  description: PropTypes.string,
-  fields: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-      title: PropTypes.string,
-      description: PropTypes.string,
-      isRequired: PropTypes.bool,
-      validation: PropTypes.arrayOf(PropTypes.object),
-      type: PropTypes.oneOf([fieldTypes]),
-      options: PropTypes.arrayOf(
-        PropTypes.shape({
-          id: PropTypes.string.isRequired,
-          label: PropTypes.string,
-        }),
-      ),
-    }),
-  ),
-};
 const typeSpecificSchemaProperties = {
   text: {
-    validation: [
+    validationRules: [
       {
         id: "multiline",
         value: false,
@@ -54,7 +23,7 @@ const typeSpecificSchemaProperties = {
   },
   radioGroup: {
     options: [],
-    validation: [
+    validationRules: [
       {
         id: "allowCustom",
         value: false,
@@ -66,7 +35,7 @@ const typeSpecificSchemaProperties = {
   },
   checkboxGroup: {
     options: [],
-    validation: [
+    validationRules: [
       {
         id: "allowCustom",
         value: false,
@@ -78,7 +47,7 @@ const typeSpecificSchemaProperties = {
   },
   boolean: {
     type: "boolean",
-    validation:[],
+    validationRules:[],
   },
 };
 
@@ -102,11 +71,8 @@ const defaultFieldSchemas = {
 };
 
 export {
-  schema,
   coreFieldSchema,
   typeSpecificSchemaProperties,
   defaultFieldSchemas,
   fieldTypes,
-  schemaPropTypes,
-  genBaseSchema,
 };

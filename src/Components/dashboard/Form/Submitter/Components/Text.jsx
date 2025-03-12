@@ -5,10 +5,10 @@ Text.propTypes = {
   ...inputBaseShape,
 };
 
-function Text({ onChange, validation }) {
+function Text({ onChange, validationRules }) {
   const multiline =
-    validation.length > 0 &&
-    validation?.find((option) => option.id === "multiline").value;
+    validationRules?.length > 0 &&
+    validationRules?.find((option) => option.id === "multiline").value;
 
   return (
     <TextField

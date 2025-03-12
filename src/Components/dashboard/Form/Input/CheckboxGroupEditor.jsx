@@ -24,7 +24,7 @@ function CheckboxGroupEditor({ options, onRemove, editorMode = false }) {
               key={index}
               value={option}
               control={<Checkbox disabled={editorMode} />}
-              label={option.label}
+              label={option.value}
             />
           </Stack>
         ))}

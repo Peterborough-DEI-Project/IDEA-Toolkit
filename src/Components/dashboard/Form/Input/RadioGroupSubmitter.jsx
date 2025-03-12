@@ -1,4 +1,3 @@
-import React from "react";
 import { FormControlLabel, Stack, RadioGroup } from "@mui/material";
 import Radio from "@mui/material/Radio";
 import PropTypes from "prop-types";
@@ -7,7 +6,7 @@ RadioGroupSubmitter.propTypes = {
   options: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-      label: PropTypes.string.isRequired,
+      value: PropTypes.string.isRequired,
     }),
   ),
   onChange: PropTypes.func.isRequired,
@@ -24,7 +23,7 @@ function RadioGroupSubmitter({ options, onChange, value }) {
               key={index}
               value={option.id}
               control={<Radio />}
-              label={option.label}
+              label={option.value}
             />
           </Stack>
         ))}

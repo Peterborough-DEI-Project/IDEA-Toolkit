@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import TableContainer from "@mui/material/TableContainer";
 import Paper from "@mui/material/Paper";
 import MuiTable from "@mui/material/Table";
@@ -9,24 +9,19 @@ import TableBody from "@mui/material/TableBody";
 import {
   Container,
   ListItemIcon,
-  Skeleton,
   Stack,
   Typography,
 } from "@mui/material";
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 import { Link } from "react-router";
-import { getAssessmentsTemplates } from "../Form/Builder/dev/__testqueries__.js";
 import { DropdownWithButton } from "../../DropdownMenu/index.js";
-
 import ConfirmPopup from "../../Generic/ConfirmPopup.jsx";
 import { useQuery } from "@tanstack/react-query";
 import TableLayouts from "./TableLayouts.js";
 import MenuItem from "@mui/material/MenuItem";
 
 function Table() {
-  const [loading, setLoading] = useState(true);
-  const [assessments, setAssessments] = useState([]);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [layout, setLayout] = useState(TableLayouts["adminTemplates"]);
 
@@ -44,11 +39,6 @@ function Table() {
           sx={{ justifyContent: "space-between" }}
         >
           <Typography variant="h4">Assessments</Typography>
-          {Object.keys(TableLayouts).map((layout, index) => (
-            <Button key={index} onClick={() => setLayout(TableLayouts[layout])}>
-              {layout}
-            </Button>
-          ))}
           <Link to="/dashboard/assessments/edit/new">
             <Button
               variant="contained"

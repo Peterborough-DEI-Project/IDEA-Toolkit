@@ -14,7 +14,6 @@ RadioGroup.propTypes = {
 function RadioGroup({ options, onChange, value }) {
   return (
     <MuiRadioGroup value={value} onChange={onChange}>
-      <pre>{JSON.stringify(options, null, 2)}</pre>
       <>
         {options.map((option, index) => (
           <Stack key={index} direction="row">

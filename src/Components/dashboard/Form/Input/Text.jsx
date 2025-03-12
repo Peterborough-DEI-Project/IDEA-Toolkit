@@ -8,7 +8,7 @@ Text.propTypes = {
 };
 
 function Text({ schemaField, onChange, editorMode = false }) {
-  const multiline = schemaField.validation?.find(
+  const multiline = schemaField.validationRules?.find(
     (option) => option.id === "multiline",
   ).value;
   return (

@@ -21,9 +21,6 @@ function FormSubmitter({ formSchema, onSubmit }) {
 
   return (
     <form>
-      {/*Uncomment this for debugging how the state is being changed by components*/}
-      <pre>{JSON.stringify(responseData, null, 2)}</pre>
-      {/*<pre>{JSON.stringify(responseSchemaMemo, null, 2)}</pre>*/}
       <Stack direction="column" spacing={2}>
         <Typography variant="h3" component="div">
           {formSchema.title || "Untitled Form"}
@@ -41,7 +38,6 @@ function FormSubmitter({ formSchema, onSubmit }) {
             />
           ))}
         </>
-
         <Button
           type="submit"
           color="primary"
