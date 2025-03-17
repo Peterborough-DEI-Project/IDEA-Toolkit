@@ -18,12 +18,12 @@ import {
 } from "react-router";
 import { supabase } from "../../supabase";
 import { Spinner } from "flowbite-react";
-import Assessments from "../Components/dashboard/Main Views/Assessments.jsx";
-import Overview from "../Components/dashboard/Main Views/Overview.jsx";
-import Profile from "../Components/dashboard/Main Views/Profile.jsx";
-import Table from "../Components/dashboard/Assessment/Table.jsx";
-import Responses from "../Components/dashboard/Assessment/Responses.jsx";
-import FormDashboard from "../Components/dashboard/Form/Builder/FormDashboard.jsx";
+import Assessments from "../Components/dashboard/Views/Assessments.jsx";
+import Overview from "../Components/dashboard/Views/Overview.jsx";
+import Profile from "../Components/dashboard/Views/Profile.jsx";
+import AssessmentsTable from "../Components/dashboard/Views/Assessments/components/AssessmentsTable.jsx";
+import Responses from "../Components/dashboard/Views/Assessments/components/Responses.jsx";
+import FormDashboard from "../Components/FormBuilder/components/pages/FormDashboard.jsx";
 
 const Routing = ({ session, setSession }) => {
   const [loading, setLoading] = useState(true);
@@ -74,7 +74,7 @@ const Routing = ({ session, setSession }) => {
             path="/dashboard/assessments/responses"
             element={<Responses />}
           />
-          <Route path="/dashboard/assessments/" element={<Table />} />
+          <Route path="/dashboard/assessments/" element={<AssessmentsTable />} />
         </Route>
         <Route path="/dashboard/profile" element={<Profile />} />
       </Route>

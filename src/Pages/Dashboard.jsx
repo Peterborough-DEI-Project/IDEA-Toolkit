@@ -1,38 +1,30 @@
 import React from "react";
-import { Box, AppBar, Toolbar, Typography, IconButton } from "@mui/material";
-import { Menu as MenuIcon } from "@mui/icons-material";
-import MainMenu from "../Components/dashboard/MainMenu.jsx";
-import { Outlet } from "react-router";
+import { NotificationsNoneOutlined as Notifications, SpaceDashboardOutlined as DashboardIcon} from "@mui/icons-material";
+import Sidebar from "../Components/dashboard/Navigation/Sidebar.jsx";
+import {Outlet} from "react-router";
+import {Button} from 'flowbite-react'
 
 function Dashboard() {
-  const [open, setOpen] = React.useState(true);
-  return (
-    <Box sx={{ display: "flex" }}>
-      <AppBar
-        position="fixed"
-        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
-      >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            edge="start"
-            onClick={() => setOpen(!open)}
-            sx={{ marginRight: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            IDEA Toolkit Dashboard
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <MainMenu />
-      <Box component="main" sx={{ flexGrow: 1, py: 3 }}>
-        <Toolbar />
-        <Outlet />
-      </Box>
-    </Box>
-  );
+
+    return (
+        <div className="flex">
+            <Sidebar/>
+            <div className="flex flex-col h-16 w-full  bg-white ">
+            <div className="fixed flex justify-between items-center min-h-16 max-h-16 border-b bg-white px-4 top-0 min-w-full">
+                <Button className="flex flex-wrap text-black bg-white">
+                    <DashboardIcon />
+                </Button>
+                <Button className="flex flex-wrap text-black bg-white">
+                    <Notifications/>
+                </Button>
+            </div>
+            <div
+                className="w-full mt-16 relative">
+                <Outlet/>
+            </div>
+            </div>
+        </div>
+    );
 }
 
 export default Dashboard;

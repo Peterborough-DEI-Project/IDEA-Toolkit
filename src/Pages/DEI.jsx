@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import HomeNav from '../Components/HomeNav';
 import deiBanner from '../assets/DEI.jpg';
@@ -39,7 +38,7 @@ const DEI = () => {
             ]
         },
         {
-            title: "Assessment Tools",
+            title: "Assessments Tools",
             description: "Resources for evaluating and improving inclusivity",
             features: [
                 "GDEIB benchmarks",

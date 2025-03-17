@@ -26,10 +26,10 @@
   - Location: This function resides in the `assessments` schema in Supabase.
   - How to Call: The function must be called by a direct reference to the schema:
     e.g., `assessments.update_assessment(payload JSON)`.
-  - Input Requirement: The function accepts a single JSON payload with the
+  - input-fields Requirement: The function accepts a single JSON payload with the
     structure outlined below.
 
-  Input JSON Structure:
+  input-fields JSON Structure:
   The function's input JSON must include the following keys:
   1. `metadata`: Contains the template's metadata and includes required properties:
       - `id` (UUID): Template ID.
@@ -62,7 +62,7 @@
       '{
           "metadata": {
               "id": "template-id-uuid",
-              "title": "Assessment Title",
+              "title": "Assessments Title",
               "description": "Description of the assessment",
               "status": "draft"
           },
@@ -149,7 +149,7 @@ END LOOP;
 -- Delete fields that aren't in the new fields
 DELETE
 FROM assessments.template_fields tf
-    WHERE tf.template_id = (SELECT payload -> 'template' ->> 'id')::uuid
+    WHERE tf.template_id = (SELECT payload -> 'metadata' ->> 'id')::uuid
     AND tf.id NOT IN (
         SELECT (new_field ->> 'id')::uuid
         FROM JSON_ARRAY_ELEMENTS(payload -> 'fields') AS new_field

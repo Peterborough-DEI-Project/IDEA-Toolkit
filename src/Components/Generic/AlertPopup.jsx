@@ -1,10 +1,9 @@
-import React from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
-import { Button } from "@mui/material";
 import PropTypes from "prop-types";
+import Btn from "./Btn.jsx";
 
 AlertPopup.propTypes = {
   alert: PropTypes.shape({
@@ -24,11 +23,11 @@ function AlertPopup({ alert }) {
       <DialogTitle>{alert.title || "Alert"}</DialogTitle>
       <DialogContent>{alert.description}</DialogContent>
       <DialogActions>
-        {alert.onContinue && <Button onClick={alert.onClose}>Cancel</Button>}
+        {alert.onContinue && <Btn variant="outline" onClick={alert.onClose}>Cancel</Btn>}
 
-        <Button variant="contained" onClick={alert.onContinue || alert.onClose}>
+        <Btn variant="contained" onClick={alert.onContinue || alert.onClose}>
           {alert.onContinue ? "Continue" : "OK"}
-        </Button>
+        </Btn>
       </DialogActions>
     </Dialog>
   );

@@ -4,6 +4,7 @@ import { NavLink } from 'react-router';
 import { signOut } from '../../supabase';
 import logo from '../assets/logo.svg';
 
+
 const HomeNav = ({ session, setSession }) => {
     const [currentPage, setCurrentPage] = React.useState('');
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -64,7 +65,7 @@ const HomeNav = ({ session, setSession }) => {
                         Blog Edit
                     </NavLink>
                     <NavLink to="/assessment" className={getLinkClass}>
-                        Assessment
+                        Assessments
                     </NavLink>
                     <NavLink to="/dashboard" className={getLinkClass}>
                         Dashboard

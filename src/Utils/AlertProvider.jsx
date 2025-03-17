@@ -1,5 +1,10 @@
 import { createContext, useContext, useState } from "react";
 import AlertPopup from "../Components/Generic/AlertPopup.jsx";
+import PropTypes from "prop-types";
+
+AlertProvider.propTypes={
+    children: PropTypes.any,
+}
 
 const AlertContext = createContext();
 
@@ -7,7 +12,7 @@ const AlertContext = createContext();
 export function AlertProvider({ children }) {
     const [alert, setAlert] = useState(null);
 
-    const showAlert = (title, description, onContinue, onClose) => {
+    const showAlert = (title, description, onClose, onContinue,) => {
         setAlert({
             title,
             description,

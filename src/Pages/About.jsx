@@ -1,8 +1,6 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import HomeNav from '../Components/HomeNav';
-import aboutBanner from '../assets/ptbo.jpg'; // Replace with your about banner image
-import inclusionImage from '../assets/inclusion.png';
+
 const About = () => {
     
 
@@ -41,7 +39,7 @@ const About = () => {
                     transition={{ duration: 0.8 }}
                     className="absolute inset-0 flex flex-col justify-center items-center text-white px-4"
                 >
-                    <h1 className="text-6xl font-bold mb-6 text-center">The City's DEI Journey</h1>
+                    <h1 className="text-6xl font-bold mb-6 text-center">The City&apos;'s DEI Journey</h1>
               
                 </motion.div>
             </div>
@@ -89,11 +87,11 @@ const About = () => {
                         {/* Image and Text Section */}
                         <div className="flex flex-col md:flex-row items-start md:items-center">
                             {/* Image on the left */}
-                            <img 
-                                src={inclusionImage} 
-                                alt="Inclusion Framework" 
-                                className="w-full md:w-1/3 rounded-lg shadow-lg mb-6 md:mb-0 md:mr-8"
-                            />
+                            {/*<img */}
+                            {/*    src={inclusionImage} */}
+                            {/*    alt="Inclusion Framework" */}
+                            {/*    className="w-full md:w-1/3 rounded-lg shadow-lg mb-6 md:mb-0 md:mr-8"*/}
+                            {/*/>*/}
 
                             {/* Text on the right */}
                             <div className="text-xl text-gray-600 md:w-2/3">

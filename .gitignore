@@ -22,3 +22,25 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# compnents
+About.jsx
+intelli
+src/Components/FormSubmitter/Components/RadioGroup.jsx
+
+src/Components/FormSubmitter/propTypes.js
+src/Pages/About.jsx
+intelli.pub
+src/Pages/About.jsx
+src/Pages/About.jsx
+
+# compnents
+About.jsx
+intelli
+src/Components/FormSubmitter/Components/RadioGroup.jsx
+
+src/Components/FormSubmitter/propTypes.js
+src/Pages/About.jsx
+intelli.pub
+src/Pages/About.jsx
+src/Pages/About.jsx

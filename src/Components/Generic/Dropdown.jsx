@@ -7,15 +7,17 @@ Dropdown.propTypes = {
   label: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.any.isRequired,
+  onClick: PropTypes.func,
   children: PropTypes.node,
 };
 
-function Dropdown({ label, value, onChange, children }) {
+function Dropdown({ label, value, onChange, children, onClick }) {
   return (
     <>
-      <FormControl sx={{ minWidth: 180 }} size="small">
+      <FormControl sx={{ minWidth: 180 }} size="small" onClick={onClick}>
         <InputLabel>{label}</InputLabel>
         <Select
+            onOpen={onClick}
           label={label}
           value={value}
           onChange={onChange}

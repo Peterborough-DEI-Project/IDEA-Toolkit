@@ -5,7 +5,6 @@ import { BrowserRouter } from "react-router-dom";
 import {
   QueryClient,
   QueryClientProvider,
-  useQuery,
 } from "@tanstack/react-query";
 
 const queryClient = new QueryClient();
@@ -15,11 +14,11 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <div className="flex flex-col h-full w-full">
+        <div className="w-full h-full">
           <div className="sticky w-full">
             {/* <HomeNav session={session} setSession={setSession}/> */}
           </div>
-          <div className="w-full min-h-[100vh]">
+          <div className="w-full h-full">
             <Routing session={session} setSession={setSession} />
           </div>
         </div>

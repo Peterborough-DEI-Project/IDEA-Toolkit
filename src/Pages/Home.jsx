@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import HomeNav from '../Components/HomeNav';
 import banner from '../assets/ptbo.jpg';
@@ -21,7 +20,7 @@ const Home = () => {
             link: "/dei"
         },
         {
-            title: "Assessment Tools",
+            title: "Assessments Tools",
             description: "Real-time feedback and evaluation of IDEA implementation",
             icon: "✅",
             color: "from-purple-500/10 to-purple-600/10",
