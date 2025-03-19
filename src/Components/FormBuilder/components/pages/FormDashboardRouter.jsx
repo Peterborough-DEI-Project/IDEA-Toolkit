@@ -7,13 +7,14 @@ import FormSubmitter from "../../../FormSubmitter/FormSubmitter.jsx";
 import WorkspacePremiumOutlinedIcon from "@mui/icons-material/WorkspacePremiumOutlined";
 import ComingSoon from "../../../Generic/Fallbacks/ComingSoon.jsx";
 import BuildOutlinedIcon from "@mui/icons-material/BuildOutlined";
+import SettingsEditor from "../editors/SettingsEditor.jsx";
 
 FormDashboardRouter.propTypes = {
  form: PropTypes.any,
 };
 
 const subViews = [
-  {
+{
     id: 0,
     label: "Editor",
     icon: EditOutlinedIcon,
@@ -35,7 +36,7 @@ const subViews = [
     id: 3,
     label: "Settings",
     icon: BuildOutlinedIcon,
-    component: ComingSoon,
+    component: SettingsEditor,
   },
 ];
 

@@ -4,7 +4,6 @@ import {coreFieldSchema, typeSpecificSchemaProperties} from "./formSchemas.js";
 
 export default function createFieldProxy(field, api, index) {
     return {
-
         get id(){
             return field.id;
         },

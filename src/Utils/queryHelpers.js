@@ -36,7 +36,7 @@ function prepareAssessmentForUpdate(data) {
 
         }
     }
-    return { metadata: metadata, fields: fields, options:options};
+    return { metadata: metadata, fields: fields, options:options, settings: data.settings.map((setting) => ({...setting, template_id: data.id}))};
 }
 
 export {prepareAssessmentForUpdate};
