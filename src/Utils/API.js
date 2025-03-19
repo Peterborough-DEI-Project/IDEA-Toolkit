@@ -2,6 +2,7 @@ import {supabase} from "../../supabase.js";
 import CaseConverter from "./CaseConverter.js";
 import {prepareAssessmentForUpdate} from "./queryHelpers.js";
 import formatDate from "./formatDate.js";
+import {v4 as uuidv4} from "uuid";
 
 
 // Gets a user's profile
@@ -36,8 +37,15 @@ async function getFullAssessment(assessmentId) {
                 assessment_uuid: assessmentId,
             })
             .select("*");
+        let { data: settings } = await supabase.schema("assessments").from("template_settings").select("*").eq("template_id", assessmentId);
+
+        // If settings have not been configured
+        if (!settings || Object.keys(settings).length === 0) {
+            settings = (await getConfigurationSettings()).map((setting)=> ({id: uuidv4(), settingId: setting.id, value: setting.defaultValue || ""}));
+        }
+
         if (data) {
-            return CaseConverter.fromJSON(data).toCamelCase();
+            return CaseConverter.fromJSON({...data, settings: settings}).toCamelCase();
         }
     } catch (error) {
         console.log(error);
@@ -47,8 +55,10 @@ async function getFullAssessment(assessmentId) {
 
 
 // Creates or updates an assessment
+// Upserts metadata, fields, field options, and settings
 async function upsertAssessment(data) {
     const dataToInsert = prepareAssessmentForUpdate(data);
+
 
     // Get id if it exists
     let {data: id} = await supabase.schema("assessments").from("templates").select("id").eq("id", dataToInsert.metadata.id).single();
@@ -89,4 +99,20 @@ async function getAssessmentsTemplates() {
     }
 }
 
-export {getUserProfile, getFullAssessment, upsertAssessment, getAssessmentsTemplates};
+// Get the various configuration settings for an assessment
+async function getConfigurationSettings(){
+    try{
+        const {data, error} = await supabase.schema("assessments").from("settings_config").select("*");
+        if(data){
+            return data;
+        }else{
+            return await supabase.schema("assessments").from("settings_config").select("*");
+        }
+    }catch(error){
+        console.error("Error selecting data:", error);
+        return null;
+    }
+
+}
+
+export {getUserProfile, getFullAssessment, upsertAssessment, getAssessmentsTemplates, getConfigurationSettings};

@@ -3,6 +3,11 @@ import {defaultFieldSchemas} from "./formSchemas.js";
 import {v4 as uuidv4} from "uuid";
 import {validateSchema as validationHelper} from "./schemaHelpers.js";
 import createFieldProxy from "./fieldProxy.js";
+import {getConfigurationSettings} from '/src/Utils/API.js';
+import CaseConverter from "/src/Utils/CaseConverter.js";
+
+const settings = CaseConverter.fromJSON(((await getConfigurationSettings()))).toCamelCase();
+
 
 const useFormBuilder = (data = null) => {
     const [errors, setErrors] = useState({}); // State to manage validation errors
@@ -12,6 +17,7 @@ const useFormBuilder = (data = null) => {
         title: "", // Title of the form
         description: "", // Description of the form
         fields: [], // List of fields in the form
+        settings: settings.map((setting)=> ({id: uuidv4(), settingId: setting.id, value: setting.defaultValue})),
     },);
 
     const api = useMemo(() => ({
@@ -78,9 +84,18 @@ const useFormBuilder = (data = null) => {
             return false;
         },
 
-        getField: (index) =>{
+        getField: (index) => {
             return (createFieldProxy(formSchema.fields[index], api, index))
-        }
+        },
+
+        editSetting(settingId, value) {
+            const newSettings = formSchema.settings;
+            newSettings.find((x)=>x.settingId === settingId).value = value;
+
+            setFormSchema((prev) => ({
+                ...prev, settings: newSettings
+            }));
+        },
 
     }), [formSchema, errors]);
 
