@@ -1,25 +1,25 @@
 import React from "react";
-import {
-    Box,
-    Drawer,
-    Icon,
-    ListItemIcon,
-    ListItemText,
-    MenuList,
-    Toolbar,
-} from "@mui/material";
 import {Link,} from "react-router";
-import dashboardViews from "./dashboardViews.js";
+// TODO: Render based on user role
+import views from "./views.js";
 import logo2 from "../../../assets/logo2.svg";
 import {useLocation} from "react-router";
 import {Sidebar as FlowbiteSidebar} from "flowbite-react";
-import {HiArrowSmRight} from "react-icons/hi";
 import SidebarTheme from "../../Generic/Themes/SidebarTheme.js";
+import {signOut} from "../../../../supabase.js";
+import Btn from "../../Generic/Btn.jsx";
 
 const theme=SidebarTheme({baseWidth: "w-[300px]"});
 
-function Sidebar({activeWindow}) {
+function Sidebar({role, activeWindow}) {
     const location = useLocation();
+    let myViews;
+    if(role === 'admin'){
+        myViews = views.adminViews;
+    }
+    else{
+        myViews = views.employeeViews;
+    }
     return (
         <>
             <FlowbiteSidebar theme={theme} className="h-[100vh]  z-10 max-w-[300px]  px-5 border-r s "
@@ -28,10 +28,10 @@ function Sidebar({activeWindow}) {
                     <img className="h-full " src={logo2} alt="logo"/>
                 </div>
                 <div className="mt-6">
-                    <FlowbiteSidebar.Items>
+                    <FlowbiteSidebar.Items >
                         <FlowbiteSidebar.ItemGroup>
                             <>
-                                {dashboardViews.map((item, index) => (
+                                {myViews.map((item, index) => (
                                     <FlowbiteSidebar.Item
                                         as={Link}
                                         to={item.route}
@@ -44,7 +44,21 @@ function Sidebar({activeWindow}) {
                                 ))}
                             </>
                         </FlowbiteSidebar.ItemGroup>
+                        <FlowbiteSidebar.ItemGroup className="w-full">
+                            <FlowbiteSidebar.Item
+                                className="w-full"
+                                as={Btn}
+                                variant="outline"
+                                onClick={()=>{
+                                signOut().then(()=>window.location.reload());
+
+                            }}>
+                                Sign Out
+                            </FlowbiteSidebar.Item>
+                        </FlowbiteSidebar.ItemGroup>
+
                     </FlowbiteSidebar.Items>
+
                 </div>
             </FlowbiteSidebar>
         </>

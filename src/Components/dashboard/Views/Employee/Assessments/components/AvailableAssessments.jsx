@@ -1,17 +1,18 @@
-import  {useState} from "react";
-import AddIcon from "@mui/icons-material/Add";
-import {Link } from "react-router";
-import {DropdownWithButton} from "../../../../Generic/DropdownMenu/index.js";
-import ConfirmPopup from "../../../../Generic/ConfirmPopup.jsx";
-import {useQuery} from "@tanstack/react-query";
+import React, {useState} from 'react';
 import TableLayouts from "../utils/TableLayouts.js";
-import {Button, Card} from 'flowbite-react'
-import {Table as FbTable} from 'flowbite-react'
-import stars from "../../../../../assets/star-shape.png";
+import {useQuery} from "@tanstack/react-query";
+import {Link} from "react-router";
+import AddIcon from "@mui/icons-material/Add";
+import StarsCard from "../../../../../Generic/Widgets/StarsCard.jsx";
+import Btn from "../../../../../Generic/Btn.jsx";
+import {Button} from "flowbite-react";
+import {Table as FbTable} from "flowbite-react";
+import {DropdownWithButton} from "../../../../../Generic/DropdownMenu/index.js";
+import ConfirmPopup from "../../../../../Generic/ConfirmPopup.jsx";
 
-function AssessmentsTable() {
+function AvailableAssessments(props)  {
     const [dialogOpen, setDialogOpen] = useState(false);
-    const [layout, setLayout] = useState(TableLayouts["adminTemplates"]);
+    const [layout, setLayout] = useState(TableLayouts["employeeTemplates"]);
 
     const {data, error, isLoading} = useQuery({
         queryFn: () => layout.queryFn(),
@@ -33,20 +34,18 @@ function AssessmentsTable() {
 
 
             <div className="grid grid-cols-2 w-full overflow-hidden ">
-                <Card className="max-w-sm relative drop-shadow-sm">
-                    <h5 className="text-lg font-bold tracking-tight text-gray-900 dark:text-white z-10">
-                        Welcome back, Carlos! <span className="ml-2 text-3xl">👋</span>
-                    </h5>
+                <StarsCard>
+                    {/*TODO: replace with real data (no. of assessments, name, and link for button)*/}
                     <p className="font-normal text-gray-700 dark:text-gray-400">
                         You have <span className="font-bold">5</span> assessments to review.
                     </p>
-                    <Button
+                    <Btn
                         size="sm"
-                        className="z-10 bg-white drop-shadow font-bold text-blue-700 hover:border-blue-600 relative transition-colors duration-200 ease-in-out">
+                        variant="outline"
+                    >
                         Review
-                    </Button>
-                    <img className="pointer-events-none absolute inset-0 z-0" src={stars} alt="stars"/>
-                </Card>
+                    </Btn>
+                </StarsCard>
 
                 <div>
 
@@ -55,7 +54,7 @@ function AssessmentsTable() {
             <div className="w-full">
                 <div className="flex flex-col gap-5">
                     <div className="flex justify-between items-center w-full ">
-                        <h5 className="text-lg font-bold ">Your Assessments</h5>
+                        <h5 className="text-lg font-bold ">{layout.tableHead}</h5>
                         <Button className="border-none bg-white h-fit  p-0  ">
                             <svg className="w-7 h-7 text-gray-800 hover:text-blue-700 transition-colors duration-100 ease-in-out dark:text-white" aria-hidden="true"
                                  xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
@@ -63,7 +62,6 @@ function AssessmentsTable() {
                                 <path stroke="currentColor" strokeLinecap="round" strokeWidth="2"
                                       d="M18.796 4H5.204a1 1 0 0 0-.753 1.659l5.302 6.058a1 1 0 0 1 .247.659v4.874a.5.5 0 0 0 .2.4l3 2.25a.5.5 0 0 0 .8-.4v-7.124a1 1 0 0 1 .247-.659l5.302-6.059c.566-.646.106-1.658-.753-1.658Z"/>
                             </svg>
-
                         </Button>
                     </div>
 
@@ -81,21 +79,21 @@ function AssessmentsTable() {
                                     <FbTable.Row key={index} className="border-t border-gray-200 ">
                                         {layout.dataColumns.map((column, i) => (
                                             <FbTable.Cell key={i}
-                                                       className={` ${i === 0 ? "font-semibold text-gray-900 " : "text-gray-700"}   whitespace-nowrap  dark:text-white`}>{row[column] || "N/A"}</FbTable.Cell>
+                                                          className={` ${i === 0 ? "font-semibold text-gray-900 " : "text-gray-700"}   whitespace-nowrap  dark:text-white`}>{row[column] || "N/A"}</FbTable.Cell>
                                         ))}
                                         <FbTable.Cell>
                                             <DropdownWithButton id={row.id}>
                                                 {layout.rowActions?.map((action, i) => (
-                                                        <Link
-                                                            key={"dropdown-"+action.label}
-                                                            to={action.link(row.id)}
-                                                            className="appearance-none flex gap-3 text-gray-700 hover:text-gray-700 rounded py-1 px-1  hover:bg-gray-200 gap transition-colors duration-100 ease-in-out"
-                                                        >
-                                                            {action.icon && (
-                                                                <action.icon/>
-                                                            )}
-                                                            {action.label}
-                                                        </Link>
+                                                    <Link
+                                                        key={"dropdown-"+action.label}
+                                                        to={action.link(row.id)}
+                                                        className="appearance-none flex gap-3 text-gray-700 hover:text-gray-700 rounded py-1 px-1  hover:bg-gray-200 gap transition-colors duration-100 ease-in-out"
+                                                    >
+                                                        {action.icon && (
+                                                            <action.icon/>
+                                                        )}
+                                                        {action.label}
+                                                    </Link>
                                                 ))}
                                             </DropdownWithButton>
                                         </FbTable.Cell>
@@ -120,4 +118,4 @@ function AssessmentsTable() {
     );
 }
 
-export default AssessmentsTable;
+export default AvailableAssessments;

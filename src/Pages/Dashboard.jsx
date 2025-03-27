@@ -4,11 +4,11 @@ import Sidebar from "../Components/dashboard/Navigation/Sidebar.jsx";
 import {Outlet} from "react-router";
 import {Button} from 'flowbite-react'
 
-function Dashboard() {
+function Dashboard({role}) {
 
     return (
         <div className="flex">
-            <Sidebar/>
+            <Sidebar role={role}/>
             <div className="flex flex-col h-16 w-full  bg-white ">
             <div className="fixed flex justify-between items-center min-h-16 max-h-16 border-b bg-white px-4 top-0 min-w-full">
                 <Button className="flex flex-wrap text-black bg-white">

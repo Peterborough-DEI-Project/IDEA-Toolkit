@@ -3,7 +3,7 @@ import {
   RadioGroup,
   CheckboxGroup,
   SwitchWithLabel,
-} from "./Components/index.js";
+} from "./components/index.js";
 import PropTypes from "prop-types";
 
 FieldComponentRouter.propTypes = {

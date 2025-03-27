@@ -1,10 +1,11 @@
 import { Route } from "react-router";
-import dashboardViews from "./dashboardViews.js";
+import adminViews from "./views.js";
 
-function DashboardRoutes() {
+function DashboardRoutes({ user }) {
+
   return (
     <>
-      {dashboardViews.map((item) => (
+      {adminViews.map((item) => (
         <Route path={`${item.route}`} key={item.id} element={item.component} />
       ))}
     </>

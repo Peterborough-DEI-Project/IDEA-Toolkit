@@ -1,5 +1,5 @@
 import {DeleteOutlined, EditOutlined} from "@mui/icons-material";
-import {getAssessmentsTemplates,} from "../../../../../Utils/API.js";
+import {getAssessmentsTemplates,} from "../../../../../../Utils/API.js";
 
 const TableLayouts = {
     // Templates created by adminstrators
@@ -28,21 +28,6 @@ const TableLayouts = {
         ],
         queryFn: getAssessmentsTemplates,
     },
-    // Templates available for employee submission
-    employeeTemplates: {
-        tableHead: "Available Assessments",
-        headers: ["Title", "Description", "Status", "Actions"],
-        dataColumns: ["title", "description", "status"],
-        rowActions: [
-            {
-                label: "Create Submission",
-                icon: EditOutlined,
-                link: (id) => `/dashboard/assessments/submit/${id}`, // TODO: replace with a link to create submission
-            },
-        ],
-        queryFn: getAssessmentsTemplates, // TODO: Replace with a function for employees only
-    },
-    // Submissions administrators can act upon
     adminSubmissions: {
         tableHead: "Employee Submissions",
         headers: [
@@ -68,12 +53,6 @@ const TableLayouts = {
             },
         ],
         queryFn: getAssessmentsTemplates, // TODO: replace with function for getting submissions (admin side)
-    },
-    // Submissions made by employees
-    employeeSubmissions: {
-        tableHead: "Submitted Assessments",
-        headers: ["Title", "Description", "Status", "Date Submitted", "Actions"],
-        dataColumns: ["Title", "Description", "Status", "Date Submitted"],
     },
     queryFn: getAssessmentsTemplates, // Todo: replace with function for getting submissions  (employee side)
 };
