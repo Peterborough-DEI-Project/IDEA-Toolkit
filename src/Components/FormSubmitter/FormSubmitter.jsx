@@ -18,10 +18,11 @@ function FormSubmitter({ form, onSubmit }) {
   );
 
   const { responseData, editResponse } = useFormConsumer(responseSchemaMemo);
-
+// TODO: Add logic for obeying settings
   return (
+
       <div className=" w-full p-16">
-    <form>
+    <form onSubmit={(e)=>onSubmit(e, responseData)}>
       <div className="flex flex-col gap-8">
         <div className="border-b">
           <h5 className="text-5xl text-gray-700 font-semibold mb-4">

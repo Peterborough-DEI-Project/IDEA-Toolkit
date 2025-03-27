@@ -1,3 +1,4 @@
+import {Fragment} from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
@@ -9,6 +10,7 @@ AlertPopup.propTypes = {
   alert: PropTypes.shape({
     title: PropTypes.string,
     description: PropTypes.string.isRequired,
+      hint: PropTypes.string,
     onClose: PropTypes.func.isRequired,
     onContinue: PropTypes.func,
   }).isRequired,
@@ -21,7 +23,17 @@ function AlertPopup({ alert }) {
   return (
     <Dialog open={true} onClose={alert.onClose}>
       <DialogTitle>{alert.title || "Alert"}</DialogTitle>
-      <DialogContent>{alert.description}</DialogContent>
+        <DialogContent>
+            <p>
+                {alert.description.split('\n').map((line, index) => (
+                    <Fragment key={index}>
+                        {line}
+                        <br />
+                    </Fragment>
+                ))}
+            </p>
+        </DialogContent>
+
       <DialogActions>
         {alert.onContinue && <Btn variant="outline" onClick={alert.onClose}>Cancel</Btn>}
 
