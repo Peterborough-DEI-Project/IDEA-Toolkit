@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import AlertPopup from "../Components/Generic/AlertPopup.jsx";
+import AlertPopup from "../Components/core/Popup/AlertPopup.jsx";
 import PropTypes from "prop-types";
 
 AlertProvider.propTypes={

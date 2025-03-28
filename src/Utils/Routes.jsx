@@ -1,19 +1,9 @@
 import React, {useEffect, useState} from "react";
-import {About, Assessment, Blog, BlogEdit, Dashboard, DEI, Home, Login,} from "../Pages/pages";
+import {About, __deleteme__Assessment, Blog, BlogEdit, DashboardOutlet, DEI, Home, Login,} from "../Pages/pages";
 import {Navigate, Outlet, Route, Routes,} from "react-router";
 import {supabase} from "../../supabase";
 import {Spinner} from "flowbite-react";
-import Assessments from "../Components/dashboard/Views/Admin/Assessments/Assessments.jsx";
-import Overview from "../Components/dashboard/Views/Admin/Overview/Overview.jsx";
-import Profile from "../Components/dashboard/Views/Admin/Profile/Profile.jsx";
-import AssessmentsTable from "../Components/dashboard/Views/Admin/Assessments/components/AssessmentsTable.jsx";
-import Responses from "../Components/dashboard/Views/Admin/Assessments/components/Responses.jsx";
-import FormDashboard from "../Components/FormBuilder/components/pages/FormDashboard.jsx";
-import EmployeeAssessments from "../Components/dashboard/Views/Employee/Assessments/Assessments.jsx";
-import EmployeeAssessmentsTable
-  from "../Components/dashboard/Views/Employee/Assessments/components/AvailableAssessments.jsx";
-import SubmitAssessment from "../Components/dashboard/Views/Employee/Assessments/utils/SubmitAssessment.jsx";
-import views from "../Components/dashboard/Navigation/views.js";
+import views from "../Components/features/dashboard/views.js";
 
 const Routing = ({session, setSession}) => {
   const [loading, setLoading] = useState(true);
@@ -101,11 +91,11 @@ const Routing = ({session, setSession}) => {
         <Route path="/dei" element={<DEI/>}/>
         <Route path="/blog" element={<Blog/>}/>
         <Route path="/blogedit" element={<BlogEdit/>}/>
-        <Route path="/assessment" element={<Assessment/>}/>
+        <Route path="/assessment" element={<__deleteme__Assessment/>}/>
 
         {role === "admin" ? (
             <Route element={<ProtectedRoutes session={session}/>} path="/dashboard/">
-              <Route path="/dashboard/" element={<Dashboard role={role} />}>
+              <Route path="/dashboard/" element={<DashboardOutlet role={role} />}>
 
                   {
                     views.adminViews.map((view, index) => (
@@ -125,7 +115,7 @@ const Routing = ({session, setSession}) => {
             </Route>
         ) : (
             <Route element={<ProtectedRoutes session={session}/>} path="/dashboard/">
-              <Route path="/dashboard/" element={<Dashboard role={role} />}>
+              <Route path="/dashboard/" element={<DashboardOutlet role={role} />}>
                   {
                     views.employeeViews.map((view, index) => (
                         <Route key={view+index} path={view.route} component={view.component} />

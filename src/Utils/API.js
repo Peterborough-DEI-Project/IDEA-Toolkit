@@ -180,6 +180,42 @@ async function submitAssessment(templateId, data) {
     }
 }
 
+async function getSubmission( submissionId ) {
+    if (!submissionId) {
+        return { success: false, error: "submissionId is required." };
+    }
+
+    try {
+        // Get the submission metadata
+        const {data: submission, error: submissionError} = await supabase
+            .schema("assessments")
+            .from("submissions")
+            .select("*")
+            .eq("id", submissionId);
+
+        if(submissionError) {
+            console.error("Error inserting submission:", submissionError.message);
+            return { success: false, error: submissionError.message };
+        }
+
+        // Get the responses
+        const { data: fields, error: submissionFieldsError } = await supabase
+            .schema("assessments")
+            .from("submissions_fields")
+            .select("*").eq("submission_id", submissionId);
+
+        if (submissionFieldsError) {
+            console.error("Error inserting submission:", submissionError.message);
+            return { success: false, error: submissionError.message };
+        }
+
+        return { ...submission, [fields]: fields };
+    } catch (error) {
+        // Catch unexpected errors and return them in a standard format
+        console.error("Unexpected error:", error.message);
+        return { success: false, error: "Unexpected error: " + error.message };
+    }
+}
 
 export {
     getUserProfile,
