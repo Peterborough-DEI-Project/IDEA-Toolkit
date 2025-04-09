@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react';
+
 import { useAuth } from '../Components/AuthContext';
 import {
     Box,
-    Drawer,
-    AppBar,
     Toolbar,
     List,
     Typography,
@@ -23,7 +21,7 @@ import {
     Leaderboard,
 } from '@mui/icons-material';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { motion } from 'framer-motion';
 
 function Dashboard() {

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {useParams} from "react-router-dom";
+import {useParams} from "react-router";
 import {getFullAssessment, submitAssessment} from "../../../../../../Utils/API.js";
 import FormSubmitter from "../../../../../features/form/form-consumer/FormSubmitter.jsx";
 import {useQuery} from "@tanstack/react-query";

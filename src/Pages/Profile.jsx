@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Label, TextInput, Alert, Spinner, Textarea } from 'flowbite-react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { motion } from 'framer-motion';
 import HomeNav from '../Components/HomeNav';
 import { useAuth } from '../Components/AuthContext';

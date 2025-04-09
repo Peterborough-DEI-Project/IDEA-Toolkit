@@ -3,7 +3,7 @@ import { Button, Label, TextInput, Alert } from 'flowbite-react'
 import homeBanner from '../assets/ptbo.jpg'
 import { motion } from 'framer-motion'
 import HomeNav from '../Components/HomeNav'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router'
 import { useAuth } from '../Components/AuthContext'
 
 const SignUp = () => {

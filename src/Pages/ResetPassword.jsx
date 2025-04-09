@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { supabase } from '../supabaseClient';
 import { Button, Label, TextInput } from 'flowbite-react';
 import { motion } from 'framer-motion';

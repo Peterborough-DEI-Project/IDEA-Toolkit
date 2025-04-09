@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
-import { Button, Label, TextInput, Alert, Spinner } from 'flowbite-react'
-import homeBanner from '../assets/ptbo.jpg'
+import  { useState } from 'react'
+import { Button, Label, TextInput, Spinner } from 'flowbite-react'
+import homeBanner from '/src/assets/ptbo.jpg'
 import { motion } from 'framer-motion'
-import HomeNav from '../Components/HomeNav'
-import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../Components/AuthContext'
-import { supabase } from '../supabaseClient'
+import HomeNav from '../../Components/HomeNav.jsx'
+import { useNavigate } from 'react-router'
+import { useAuth } from '../../Components/AuthContext'
+import { supabase } from '../../supabaseClient.js'
 
 const Login = () => {
     const [email, setEmail] = useState('')

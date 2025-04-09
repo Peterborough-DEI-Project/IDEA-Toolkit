@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from "react";
-import {About, __deleteme__Assessment, Blog, BlogEdit, DashboardOutlet, DEI, Home, Login,} from "../Pages/pages";
+import {  Blog, BlogEdit, DEI, Home, Login,} from "../Pages/pages";
+import __deleteme__Assessment from '../Pages/__deleteme__Assessment.jsx'
+import DashboardOutlet from '../Pages/dashboard/DashboardOutlet.jsx'
 import {Navigate, Outlet, Route, Routes,} from "react-router";
 import {supabase} from "../../supabase";
 import {Spinner} from "flowbite-react";
@@ -87,7 +89,6 @@ const Routing = ({session, setSession}) => {
             path="/login"
             element={session ? <Navigate to="/dashboard"/> : <Login/>}
         />
-        <Route path="/about" element={<About/>}/>
         <Route path="/dei" element={<DEI/>}/>
         <Route path="/blog" element={<Blog/>}/>
         <Route path="/blogedit" element={<BlogEdit/>}/>
