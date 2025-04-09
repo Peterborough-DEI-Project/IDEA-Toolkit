@@ -1,7 +1,6 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import HomeNav from '../Components/HomeNav';
-import deiBanner from '../assets/DEI.jpg';
+import HomeNav from '../../Components/HomeNav.jsx';
+import deiBanner from '../../assets/DEI.jpg';
 
 const DEI = ({ session }) => {
     const initiatives = [
@@ -39,7 +38,7 @@ const DEI = ({ session }) => {
             ]
         },
         {
-            title: "Assessment Tools",
+            title: "Assessments Tools",
             description: "Resources for evaluating and improving inclusivity",
             features: [
                 "GDEIB benchmarks",

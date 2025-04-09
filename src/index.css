@@ -74,3 +74,51 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+input{
+  @apply ring-offset-0 ring-0;
+  --tw-ring-shadow: 0 0 #000 !important;
+}
+input:focus{
+  @apply ring-offset-0 ring-0;
+  --tw-ring-shadow: 0 0 #000 !important;
+}
+
+
+input{
+  @apply ring-offset-0 ring-0;
+  --tw-ring-shadow: 0 0 #000 !important;
+}
+input:focus{
+  @apply ring-offset-0 ring-0;
+  --tw-ring-shadow: 0 0 #000 !important;
+}
+
+.light-scrollbar::-webkit-scrollbar {
+  width: 8px; /* Thin scrollbar */
+}
+
+.light-scrollbar::-webkit-scrollbar-track {
+  background: #f9fafb; /* Very light gray background */
+  border-radius: 10px;
+}
+
+.light-scrollbar::-webkit-scrollbar-thumb {
+  background: #d1d5db; /* Soft gray scrollbar */
+  border-radius: 10px;
+  transition: background 0.2s ease-in-out; /* Smooth transition */
+}
+
+/* Hover Effect */
+.light-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af; /* Slightly darker gray on hover */
+  cursor: pointer; /* Ensures interaction feedback */
+  scrollbar-width: thin;
+  scrollbar-color: #d1d5db #f9fafb;
+}
+
+/* Firefox Scrollbar */
+.light-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #d1d5db #f9fafb;
+}

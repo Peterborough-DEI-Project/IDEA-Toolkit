@@ -1,21 +1,17 @@
 import React, { useState } from 'react';
 import { Navbar, Button } from 'flowbite-react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { useAuth } from '../Components/AuthContext';
+import { NavLink } from 'react-router';
+import { signOut } from '../../supabase';
 import logo from '../assets/logo.svg';
 
-const HomeNav = ({ session }) => {
-    const navigate = useNavigate();
+
+const HomeNav = ({ session, setSession }) => {
+    const [currentPage, setCurrentPage] = React.useState('');
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const { signOut } = useAuth();
 
     const handleSignOut = async () => {
-        try {
-            await signOut();
-            navigate('/login');
-        } catch (error) {
-            console.error("Error signing out:", error);
-        }
+        await signOut();
+        setSession(null);
     };
 
     // Custom classes for NavLink - active and inactive states
@@ -65,14 +61,15 @@ const HomeNav = ({ session }) => {
                     <NavLink to="/blog" className={getLinkClass}>
                         Blog
                     </NavLink>
-                    
-                    {session && (
-                        <>
-                            <NavLink to="/dashboard" className={getLinkClass}>
-                                Dashboard
-                            </NavLink>
-                        </>
-                    )}
+                    {/* <NavLink to="/blogedit" className={getLinkClass}>
+                        Blog Edit
+                    </NavLink>
+                    <NavLink to="/assessment" className={getLinkClass}>
+                        Assessments
+                    </NavLink>
+                    <NavLink to="/dashboard" className={getLinkClass}>
+                        Dashboard
+                    </NavLink> */}
                     
                     {/* Login Button */}
                     {session ? (
@@ -80,7 +77,7 @@ const HomeNav = ({ session }) => {
                             onClick={handleSignOut}
                             className="bg-blue-700 text-white hover:bg-blue-800 rounded-full px-3 md:px-6 py-1 font-semibold text-base md:text-lg hover:scale-105 w-full md:w-auto"
                         >
-                            Log Out
+                            Sign Out
                         </Button>
                     ) : (
                         <NavLink to="/login" className="w-full md:w-auto">

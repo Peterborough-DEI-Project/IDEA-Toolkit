@@ -11,17 +11,17 @@ import ResetPassword from './ResetPassword';
 import Profile from './Profile';
 import VerifyEmail from './VerifyEmail';
 
-export { 
-    About, 
-    Blog, 
-    BlogEdit, 
-    Dashboard, 
-    Home, 
-    Login, 
-    SignUp, 
-    DEI, 
-    Assessment, 
-    ResetPassword, 
+export {
+    About,
+    Blog,
+    BlogEdit,
+    Dashboard,
+    Home,
+    Login,
+    SignUp,
+    DEI,
+    Assessment,
+    ResetPassword,
     Profile,
-    VerifyEmail 
+    VerifyEmail
 };
