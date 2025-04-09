@@ -3,9 +3,14 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router';
 import HomeNav from '../Components/HomeNav';
 import blog from '../assets/blog.webp';
+import { supabase } from '../supabaseClient';
+import { useAuth } from '../Components/AuthContext';
 
 const BlogEdit = ({ session }) => {
     const navigate = useNavigate();
+    const { session: authSession } = useAuth();
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
     const [formData, setFormData] = useState({
         title: '',
         category: 'Local',
@@ -29,11 +34,86 @@ const BlogEdit = ({ session }) => {
     // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // Here you would typically:
-        // 1. Upload the image to your storage
-        // 2. Save the blog post data to your database
-        // 3. Redirect to the blog page
-        navigate('/blog');
+        setLoading(true);
+        setError(null);
+        
+        try {
+            if (!authSession?.user) {
+                throw new Error('You must be logged in to create a post');
+            }
+            
+            // 1. Try to create the bucket first if it doesn't exist
+            let imageUrl = null;
+            if (formData.image) {
+                try {
+                    // Create the bucket if it doesn't exist
+                    const { error: bucketError } = await supabase.storage.createBucket('blog-images', {
+                        public: true
+                    });
+                    
+                    // Ignore error if bucket already exists
+                    if (bucketError && bucketError.message !== 'Bucket already exists') {
+                        console.error('Error creating bucket:', bucketError);
+                        // Fall back to default image if bucket creation fails
+                        imageUrl = "https://images.unsplash.com/photo-1520946228043-fdd9824c66f9?q=80&w=2940&auto=format&fit=crop";
+                    } else {
+                        // Upload the image
+                        const fileExt = formData.image.name.split('.').pop();
+                        const fileName = `${Math.random().toString(36).substring(2, 15)}.${fileExt}`;
+                        const filePath = `${fileName}`;
+                        
+                        const { data: uploadData, error: uploadError } = await supabase.storage
+                            .from('blog-images')
+                            .upload(filePath, formData.image);
+                            
+                        if (uploadError) {
+                            console.error('Upload error:', uploadError);
+                            // Fall back to default image if upload fails
+                            imageUrl = "https://images.unsplash.com/photo-1520946228043-fdd9824c66f9?q=80&w=2940&auto=format&fit=crop";
+                        } else {
+                            // Get public URL for the uploaded image
+                            const { data: { publicUrl } } = supabase.storage
+                                .from('blog-images')
+                                .getPublicUrl(filePath);
+                                
+                            imageUrl = publicUrl;
+                        }
+                    }
+                } catch (storageError) {
+                    console.error('Storage error:', storageError);
+                    // Fall back to default image if any storage operation fails
+                    imageUrl = "https://images.unsplash.com/photo-1520946228043-fdd9824c66f9?q=80&w=2940&auto=format&fit=crop";
+                }
+            } else {
+                // Use default image if no image was selected
+                imageUrl = "https://images.unsplash.com/photo-1520946228043-fdd9824c66f9?q=80&w=2940&auto=format&fit=crop";
+            }
+            
+            // 2. Save blog post data to database
+            const { data: postData, error: postError } = await supabase
+                .from('blog_posts')
+                .insert([
+                    {
+                        title: formData.title,
+                        content: formData.content,
+                        category: formData.category,
+                        image_url: imageUrl,
+                        author_id: authSession.user.id,
+                    
+                    }
+                ]);
+                
+            if (postError) throw postError;
+            
+            // 3. Redirect to blog page on success
+            navigate('/blog');
+            
+        } catch (err) {
+            console.error('Error creating blog post:', err);
+            setError(err.message || 'Failed to create blog post');
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -60,6 +140,13 @@ const BlogEdit = ({ session }) => {
                     className="max-w-3xl mx-auto bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl p-8"
                 >
                     <h1 className="text-3xl font-bold mb-8">Create New Blog Post</h1>
+                    
+                    {error && (
+                        <div className="mb-6 p-4 bg-red-100 border-l-4 border-red-500 text-red-700 rounded">
+                            <p>{error}</p>
+                        </div>
+                    )}
+                    
                     <form onSubmit={handleSubmit} className="space-y-6">
                         {/* Title Input */}
                         <div>
@@ -125,11 +212,12 @@ const BlogEdit = ({ session }) => {
                         <div className="flex gap-4">
                             <motion.button
                                 type="submit"
+                                disabled={loading}
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
-                                className="bg-blue-600 text-white px-8 py-3 rounded-full font-medium hover:bg-blue-700 transition-colors"
+                                className="bg-blue-600 text-white px-8 py-3 rounded-full font-medium hover:bg-blue-700 transition-colors disabled:opacity-50"
                             >
-                                Publish Post
+                                {loading ? 'Publishing...' : 'Publish Post'}
                             </motion.button>
                             <motion.button
                                 type="button"

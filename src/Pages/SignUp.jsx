@@ -21,14 +21,25 @@ const SignUp = () => {
     const handleSignUp = async (e) => {
         e.preventDefault()
         setLoading(true)
+        
+        // Missing password validation
+        if (password !== confirmPassword) {
+            setError("Passwords do not match");
+            setLoading(false);
+            return;
+        }
+        
         try{
             const result = await signUpNewUser(email, password);
-
+    
             if(result.success){
                 navigate('/verify-email', {state: {email}});
+            } else if (result.error) {
+                setError(result.error.message || "Failed to sign up");
             }
         } catch(err){
-            setError("an error occured");
+            setError(err.message || "An error occurred during signup");
+            console.error(err);
         } finally{
             setLoading(false);
         }

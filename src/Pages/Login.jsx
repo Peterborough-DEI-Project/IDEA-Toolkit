@@ -44,8 +44,11 @@ const Login = () => {
             if (!success) {
                 throw error;
             }
+            
+            // Missing navigation after successful Google sign-in
+            navigate("/dashboard");
         } catch (err) {
-            setMessage({ type: 'failure', text: "Failed to sign in with Google" });
+            setMessage({ type: 'failure', text: err.message || "Failed to sign in with Google" });
             console.error(err);
         } finally {
             setLoading(false);
@@ -57,8 +60,9 @@ const Login = () => {
         setLoading(true);
         
         try {
+            // Make sure this URL matches your actual route for password reset
             const { error } = await supabase.auth.resetPasswordForEmail(resetEmail, {
-                redirectTo: `${window.location.origin}/reset-password#recovery`,
+                redirectTo: `${window.location.origin}/reset-password`,
             });
             
             if (error) throw error;
