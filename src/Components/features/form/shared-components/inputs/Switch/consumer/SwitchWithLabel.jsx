@@ -1,6 +1,6 @@
 import { FormControlLabel, Switch, } from "@mui/material";
 import { ToggleSwitch } from 'flowbite-react'
-import { inputBaseShape } from "../propTypes.js";
+import { inputBaseShape } from "/src/Components/features/form//form-consumer/form-consumer-utilities/propTypes.js";
 import PropTypes from "prop-types";
 
 SwitchWithLabel.propTypes = {

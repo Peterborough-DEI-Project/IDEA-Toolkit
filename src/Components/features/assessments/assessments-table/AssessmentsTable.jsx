@@ -1,14 +1,8 @@
 import React, {useState} from 'react';
-import TableLayouts from "../utils/TableLayouts.js";
 import {useQuery} from "@tanstack/react-query";
 import {Link} from "react-router";
-import AddIcon from "@mui/icons-material/Add";
-import StarsCard from "../../../../../../Components/core/Card/StarsCard.jsx";
-import Btn from "../../../../../../Components/core/Button/Btn.jsx";
-import {Button} from "flowbite-react";
 import {Table as FbTable} from "flowbite-react";
-import {DropdownWithButton} from "../../../../../../Components/core/Dropdown/index.js";
-import __deleteme__ConfirmPopup from "../../../../../../Components/core/Popup/__deleteme__ConfirmPopup.jsx";
+import {DropdownWithButton} from "/src/Components/core/Dropdown/index.js";
 import PropTypes from "prop-types";
 import tableLayouts from './tableLayouts.js'
 
@@ -16,7 +10,7 @@ AssessmentsTable.propTypes = {
     dataVariant: PropTypes.oneOf(Object.keys(tableLayouts)),
 }
 
-function AssessmentsTable({dataVariant = "employeeTemplates"})  {
+function AssessmentsTable({dataVariant = "adminTemplates"})  {
     const [layout, setLayout] = useState(tableLayouts[dataVariant]);
 
     const {data, error, isLoading} = useQuery({

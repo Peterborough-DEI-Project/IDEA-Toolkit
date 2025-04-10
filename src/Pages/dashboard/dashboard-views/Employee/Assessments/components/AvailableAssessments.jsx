@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import TableLayouts from "../utils/TableLayouts.js";
+import TableLayouts from "/src/Components/features/assessments/assessments-table/tableLayouts.js";
 import {useQuery} from "@tanstack/react-query";
 import {Link} from "react-router";
 import AddIcon from "@mui/icons-material/Add";
@@ -23,13 +23,6 @@ function AvailableAssessments(props)  {
         <div className="flex flex-col items-center justify-center gap-7  w-full p-10 ">
             <div className="flex justify-between items-center w-full">
                 <h3 className="text-3xl font-semibold ">Assessments</h3>
-                <Link to="/dashboard/assessments/edit/new" className=" h-10 max-w-fit self-end justify-self-start appearance-none border-none inline-flex justify-center items-center gap-3 px-4 items-center  rounded-lg
-                                                  text-white bg-gradient-to-br from-blue-600 to-violet-600 hover:from-blue-600 hover:to-violet-600 transition-[background-position] duration-[250ms] ease-out bg-[length:200%_200%] bg-[position:50%_50%] hover:bg-[position:100%_100%]
-                                                    transition-colors duration-200 ease-in-out  align-middle hover:text-white">
-                    <AddIcon/>
-
-                    New __deleteme__Assessment
-                </Link>
             </div>
 
 

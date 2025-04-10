@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import CheckboxGroupEditor from "./CheckboxGroupEditor.jsx";
 import RadioGroupEditor from "./RadioGroupEditor.jsx";
-import AddInput from "./AddInput.jsx";
+import AddInput from "../builder/AddOption.jsx";
 import {AnimatePresence, LayoutGroup, motion} from "framer-motion";
 
 OptionsEditor.propTypes = {

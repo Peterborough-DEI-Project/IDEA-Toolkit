@@ -1,5 +1,5 @@
 import { TextField } from "@mui/material";
-import { inputBaseShape } from "../propTypes.js";
+import { inputBaseShape } from '/src/Components/features/form//form-consumer/form-consumer-utilities/propTypes.js';
 
 Text.propTypes = {
   ...inputBaseShape,

@@ -1,5 +1,5 @@
 import {DeleteOutlined, EditOutlined} from "@mui/icons-material";
-import {getAssessmentsTemplates,} from "../../../../../../Utils/API.js";
+import {getAssessmentsTemplates,} from "../../../../Utils/API.js";
 import {getAvailableAssessments} from "../../../../Utils/API.js";
 
 const TableLayouts = {

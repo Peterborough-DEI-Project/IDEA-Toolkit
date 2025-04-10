@@ -12,7 +12,7 @@ dist
 dist-ssr
 *.local
 
-# Editor directories and files
+# FormEditor directories and files
 .vscode/*
 !.vscode/extensions.json
 .idea
@@ -22,5 +22,25 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-.vercel
-.env*.local
+
+# compnents
+src/Pages/static-pages/About.jsx
+intelli
+src/Components/features/form/form-consumer/components/RadioGroup.jsx
+
+src/Components/features/form/form-consumer/propTypes.js
+src/Pages/static-pages/About.jsx
+intelli.pub
+src/Pages/static-pages/About.jsx
+src/Pages/static-pages/About.jsx
+
+# compnents
+src/Pages/static-pages/About.jsx
+intelli
+src/Components/features/form/form-consumer/components/RadioGroup.jsx
+
+src/Components/features/form/form-consumer/propTypes.js
+src/Pages/static-pages/About.jsx
+intelli.pub
+src/Pages/static-pages/About.jsx
+src/Pages/static-pages/About.jsx

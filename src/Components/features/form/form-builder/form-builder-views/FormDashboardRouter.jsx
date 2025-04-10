@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
-import FormEditor from "../../form-builder-views/form-editor/FormEditor.jsx";
+import FormEditor from './form-editor/FormEditor.jsx'
 import WysiwygIcon from "@mui/icons-material/Wysiwyg";
-import FormSubmitter from "../../../form-consumer/FormSubmitter.jsx";
+import FormSubmitter from "../../form-consumer/form-consumer-views/FormSubmitter.jsx";
 import WorkspacePremiumOutlinedIcon from "@mui/icons-material/WorkspacePremiumOutlined";
-import ComingSoon from "../../../../../shared/Fallbacks/ComingSoon.jsx";
+import ComingSoon from "/src/Components/shared/Fallbacks/ComingSoon.jsx";
 import BuildOutlinedIcon from "@mui/icons-material/BuildOutlined";
-import SettingsEditor from "../../form-builder-views/settings/SettingsEditor.jsx";
+import SettingsEditor from "./settings/SettingsEditor.jsx";
 
 FormDashboardRouter.propTypes = {
  form: PropTypes.any,
