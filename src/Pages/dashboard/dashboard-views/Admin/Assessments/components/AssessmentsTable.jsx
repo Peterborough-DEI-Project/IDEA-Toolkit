@@ -1,10 +1,10 @@
 import React, {useState} from "react";
 import AddIcon from "@mui/icons-material/Add";
-import {Link } from "react-router";
+import {Link} from "react-router";
 import {DropdownWithButton} from "../../../../../../Components/core/Dropdown/index.js";
 import __deleteme__ConfirmPopup from "../../../../../../Components/core/Popup/__deleteme__ConfirmPopup.jsx";
 import {useQuery} from "@tanstack/react-query";
-import TableLayouts from "../utils/TableLayouts.js";
+import TableLayouts from "/src/Components/features/assessments/assessments-table/tableLayouts.js";
 import {Button, Card} from 'flowbite-react'
 import {Table as FbTable} from 'flowbite-react'
 import StarsCard from '/src/Components/core/Card/StarsCard.jsx'
@@ -27,8 +27,7 @@ function AssessmentsTable() {
                                                   text-white bg-gradient-to-br from-blue-600 to-violet-600 hover:from-blue-600 hover:to-violet-600 transition-[background-position] duration-[250ms] ease-out bg-[length:200%_200%] bg-[position:50%_50%] hover:bg-[position:100%_100%]
                                                     transition-colors duration-200 ease-in-out  align-middle hover:text-white">
                     <AddIcon/>
-
-                    New __deleteme__Assessment
+                    New Assessment
                 </Link>
             </div>
 

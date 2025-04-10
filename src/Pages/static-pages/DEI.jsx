@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import HomeNav from '../../Components/HomeNav.jsx';
 import deiBanner from '../../assets/DEI.jpg';
 
-const DEI = () => {
+const DEI = ({ session }) => {
     const initiatives = [
         {
             title: "Inclusion",
@@ -63,7 +63,7 @@ const DEI = () => {
         <div className="min-h-screen bg-white">
             {/* Hero Section */}
             <div className="relative h-screen">
-                <HomeNav />
+                <HomeNav session={session}/>
                 <img 
                     src={deiBanner}
                     alt="DEI Banner" 

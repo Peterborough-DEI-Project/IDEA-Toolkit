@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { fieldTypes } from "../form-builder/utils/formSchemas.js";
+import { fieldTypes } from "../../form-builder/form-builder-utilities/formSchemas.js";
 
 export const formSchemaShape = PropTypes.shape({
   title: PropTypes.string,

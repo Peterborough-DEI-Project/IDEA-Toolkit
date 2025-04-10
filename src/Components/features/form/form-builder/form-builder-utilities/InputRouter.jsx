@@ -1,8 +1,8 @@
-import OptionsEditor from "../editors/OptionsEditor.jsx";
-import SwitchWithLabel from "../../../input-fields/builder/SwitchWithLabel.jsx";
+import OptionsEditor from "../../shared-components/inputs/Options/builder/OptionsEditor.jsx";
+import SwitchWithLabel from "../../shared-components/inputs/Switch/builder/SwitchWithLabel.jsx";
 import PropTypes from "prop-types";
-import Text from "../../../input-fields/Text/builder/Text.jsx";
-import {AnimatePresence, LayoutGroup, motion} from "framer-motion";
+import Text from "../../shared-components/inputs/Text/builder/Text.jsx";
+
 
 const inputComponents = {
   text: Text,

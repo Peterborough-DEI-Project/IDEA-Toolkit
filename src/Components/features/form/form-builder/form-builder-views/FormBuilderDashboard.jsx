@@ -1,14 +1,14 @@
 import {useCallback, useEffect, useState} from "react";
 import { Backdrop, CircularProgress,} from "@mui/material";
-import {useAlert} from "../../../../../../Utils/AlertProvider.jsx"
+import {useAlert} from "/src/Utils/AlertProvider.jsx"
 import FormDashboardRouter from "./FormDashboardRouter.jsx";
-import useFormBuilder from "../../utils/useFormBuilder.js";
+import useFormBuilder from "../form-builder-utilities/useFormBuilder.js"
 import {getFullAssessment} from "/src/Utils/API.js";
 import {useQuery} from "@tanstack/react-query";
-import {useParams} from "react-router-dom";
+import {useParams} from "react-router";
 import {redirect} from "react-router";
-import Sidebar from "./Sidebar.jsx";
-import {upsertAssessment} from "../../../../../../Utils/API.js";
+import Sidebar from "../form-builder-utilities/Sidebar.jsx";
+import {upsertAssessment} from "/src/Utils/API.js";
 
 
 function FormDashboard() {

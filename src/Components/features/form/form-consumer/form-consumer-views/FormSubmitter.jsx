@@ -1,9 +1,10 @@
 import PropTypes from "prop-types";
 import { useMemo } from "react";
-import FieldRenderer from "./FieldRenderer.jsx";
+import FieldRenderer from "../form-consumer-utilities/FieldRenderer.jsx";
 import { Button } from "@mui/material";
-import useFormConsumer from "./useFormConsumer.js";
-import { createResponseSchema } from "../form-builder/utils/schemaHelpers.js";
+import useFormConsumer from "../form-consumer-utilities/useFormConsumer.js";
+import { createResponseSchema } from "../../form-builder/form-builder-utilities/schemaHelpers.js";
+import Btn from "../../../../core/Button/Btn.jsx";
 
 FormSubmitter.propTypes = {
   form: PropTypes.any,
@@ -42,14 +43,13 @@ function FormSubmitter({ form, onSubmit }) {
             />
           ))}
         </>
-        <Button
-          type="submit"
-          color="primary"
-          variant="contained"
-          disabled={!onSubmit}
-        >
-          Submit
-        </Button>
+
+          <Btn   type="submit"
+                 disabled={!onSubmit}>
+            Submit
+          </Btn>
+
+
       </div>
     </form>
       </div>

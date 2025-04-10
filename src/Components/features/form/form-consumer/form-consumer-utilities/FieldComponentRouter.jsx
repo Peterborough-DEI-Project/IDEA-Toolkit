@@ -1,10 +1,8 @@
-import {
-  Text,
-  RadioGroup,
-  CheckboxGroup,
-  SwitchWithLabel,
-} from "./components/index.js";
 import PropTypes from "prop-types";
+import Text from '../../shared-components/inputs/Text/consumer/Text.jsx'
+import RadioGroup from '../../shared-components/inputs/Options/consumer/RadioGroup.jsx'
+import CheckboxGroup from '../../shared-components/inputs/Options/consumer/CheckboxGroup.jsx'
+import SwitchWithLabel from '../../shared-components/inputs/Switch/consumer/SwitchWithLabel.jsx'
 
 FieldComponentRouter.propTypes = {
   type: PropTypes.string.isRequired,

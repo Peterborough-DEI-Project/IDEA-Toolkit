@@ -87,8 +87,7 @@ async function getAssessmentsTemplates() {
         let {data} = await supabase
             .schema("assessments")
             .from("templates")
-            .select("id, title, description, created_at, status")
-            .eq("owner_id", "281d0e49-b3f3-44bb-8d37-6835a81ee1b8"); // todo: Fix
+            .select("id, title, description, created_at, status"); // todo: Fix
 
         return data.map((item) => ({
             id: item.id,
@@ -122,7 +121,7 @@ async function getConfigurationSettings() {
 // TODO: Implement supabase policies to make available assessments visible only (status == published)
 async function getAvailableAssessments() {
     try {
-        let {data} = await supabase.schema("assessments").from("templates_with_settings").select("*").eq("status", "published").lt("");
+        let {data} = await supabase.schema("assessments").from("templates").select("*").eq("status", "published");
         return CaseConverter.fromJSON(data).toCamelCase();
     } catch (error) {
         console.error("Error selecting data:", error);

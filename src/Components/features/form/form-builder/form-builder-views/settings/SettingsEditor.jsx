@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import settingsRegistry from '../../utils/settingsComponentRegistry.js'
+import settingsRegistry from '../../form-builder-utilities/settingsComponentRegistry.js'
 import {getConfigurationSettings} from "../../../../../../Utils/API.js";
 
 SettingsEditor.propTypes = {

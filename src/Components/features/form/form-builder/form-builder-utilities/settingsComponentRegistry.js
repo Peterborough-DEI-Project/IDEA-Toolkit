@@ -1,11 +1,9 @@
 // import Text from '../components/input-fields/Text.jsx'
-import SwitchWithLabel from '../../shared-components/inputs/builder/SwitchWithLabel.jsx'
-import Date from '../../shared-components/inputs/builder/Date.jsx'
-import {Textarea, Datepicker, ToggleSwitch} from 'flowbite-react';
-import {TextField, Switch} from '@mui/material';
+import Date from '/src/Components/core/Date/Date.jsx'
+import {TextField, } from '@mui/material';
 
-import MaxSubmissions from '../components/settings-fields/MaxSubmissions.jsx'
-import Boolean from '../components/settings-fields/Boolean.jsx'
+import MaxSubmissions from '../form-builder-views/settings/settings-fields/MaxSubmissions.jsx'
+import Boolean from '../form-builder-views/settings/settings-fields/Boolean.jsx'
 
 const registry = {
     default: [

@@ -4,7 +4,7 @@ import {
   RadioGroup as MuiRadioGroup,
   Radio,
 } from "@mui/material";
-import { inputBaseShape, selectionBaseShape } from "../propTypes.js";
+import { inputBaseShape, selectionBaseShape } from "/src/Components/features/form//form-consumer/form-consumer-utilities/propTypes.js";
 
 RadioGroup.propTypes = {
   ...inputBaseShape,

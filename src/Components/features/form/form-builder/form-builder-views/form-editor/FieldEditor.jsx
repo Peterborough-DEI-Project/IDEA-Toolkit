@@ -1,8 +1,8 @@
-import {Alert, Collapse, FormControlLabel, IconButton, Stack, Switch,} from "@mui/material";
+import {Alert, Collapse, FormControlLabel, IconButton, Switch,} from "@mui/material";
 import PropTypes from "prop-types";
-import {fieldTypes} from "../../utils/formSchemas.js";
+import {fieldTypes} from "../../form-builder-utilities/formSchemas.js";
 import DeleteIcon from "@mui/icons-material/Delete";
-import InputRouter from "../../components/pages/InputRouter.jsx";
+import InputRouter from "../../form-builder-utilities/InputRouter.jsx";
 import Title from '../../../shared-components/inputs/Text/builder/Title.jsx'
 import Description from '../../../shared-components/inputs/Text/builder/Description.jsx'
 import Tooltip from "@mui/material/Tooltip";

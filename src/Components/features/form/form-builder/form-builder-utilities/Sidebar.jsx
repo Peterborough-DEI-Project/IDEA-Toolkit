@@ -1,17 +1,17 @@
 
+import React from "react";
 import PropTypes from "prop-types";
 import SaveIcon from "@mui/icons-material/Save";
 import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 import {Sidebar as FlowbiteSidebar} from "flowbite-react";
 import {Link} from "react-router";
-import React from "react";
-import SidebarTheme from "../../../../../shared/Themes/SidebarTheme.js";
+import SidebarTheme from "/src/Components/shared/Themes/SidebarTheme.js";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
-import FieldsEditor from "../../form-builder-views/form-editor/FormEditor.jsx";
+import FieldsEditor from "../form-builder-views/form-editor/FieldEditor.jsx";
 import WysiwygIcon from "@mui/icons-material/Wysiwyg";
-import FormSubmitter from "../../../form-consumer/FormSubmitter.jsx";
+import FormSubmitter from "../../form-consumer/form-consumer-views/FormSubmitter.jsx";
 import WorkspacePremiumOutlinedIcon from "@mui/icons-material/WorkspacePremiumOutlined";
-import ComingSoon from "../../../../../shared/Fallbacks/ComingSoon.jsx";
+import ComingSoon from "/src/Components/shared/Fallbacks/ComingSoon.jsx";
 import BuildOutlinedIcon from "@mui/icons-material/BuildOutlined";
 
 const subViews = [

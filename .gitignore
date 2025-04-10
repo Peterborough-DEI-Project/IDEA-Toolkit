@@ -24,23 +24,23 @@ dist-ssr
 *.sw?
 
 # compnents
-About.jsx
+src/Pages/static-pages/About.jsx
 intelli
-src/Components/FormSubmitter/Components/RadioGroup.jsx
+src/Components/features/form/form-consumer/components/RadioGroup.jsx
 
-src/Components/FormSubmitter/propTypes.js
-src/Pages/About.jsx
+src/Components/features/form/form-consumer/propTypes.js
+src/Pages/static-pages/About.jsx
 intelli.pub
-src/Pages/About.jsx
-src/Pages/About.jsx
+src/Pages/static-pages/About.jsx
+src/Pages/static-pages/About.jsx
 
 # compnents
-About.jsx
+src/Pages/static-pages/About.jsx
 intelli
-src/Components/FormSubmitter/Components/RadioGroup.jsx
+src/Components/features/form/form-consumer/components/RadioGroup.jsx
 
-src/Components/FormSubmitter/propTypes.js
-src/Pages/About.jsx
+src/Components/features/form/form-consumer/propTypes.js
+src/Pages/static-pages/About.jsx
 intelli.pub
-src/Pages/About.jsx
-src/Pages/About.jsx
+src/Pages/static-pages/About.jsx
+src/Pages/static-pages/About.jsx

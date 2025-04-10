@@ -23,7 +23,7 @@ const TableLayouts = {
         ],
         queryFn: getAvailableAssessments,
     },
-    employeSubmissions: {
+    employeeSubmissions: {
         tableHead: "Your Submissions",
         headers: [
             "Title",

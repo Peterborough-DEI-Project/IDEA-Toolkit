@@ -7,9 +7,9 @@ Btn.propTypes = {
     children: PropTypes.any,
 }
 
-function Btn({children, onClick, variant="default"}) {
+function Btn({children, onClick, variant="default", type="button", disabled=false}) {
     return (
-        <Button onClick={onClick}
+        <Button type={type} onClick={onClick} disabled={disabled}
                 className={`h-10 font-semibold text-lg appearance-none 
                     inline-flex justify-center items-center gap-3 px-4  rounded-lg
                     transition-colors duration-150 ease-in-out

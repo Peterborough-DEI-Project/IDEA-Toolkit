@@ -20,3 +20,4 @@ GRANT DELETE, INSERT, REFERENCES, SELECT, TRIGGER, TRUNCATE, UPDATE ON templates
 
 GRANT SELECT ON templates_with_settings TO authenticator;
 
+

@@ -1,7 +1,7 @@
-import { Body, Foot  } from "../form-builder/components/layouts/field-layout/index.js";
+import { Body, Foot  } from "../../shared-components/layouts/field-layout";
 import { Stack, Typography } from "@mui/material";
 import PropTypes from "prop-types";
-import { formSchemaShape } from "./propTypes.js";
+import { formSchemaShape } from "/src/Components/features/form//form-consumer/form-consumer-utilities/propTypes.js";
 import FieldComponentRouter from "./FieldComponentRouter.jsx";
 
 FieldRenderer.propTypes = {

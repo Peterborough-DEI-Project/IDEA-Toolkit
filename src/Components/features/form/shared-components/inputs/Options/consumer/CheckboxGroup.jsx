@@ -1,6 +1,6 @@
 import { FormControlLabel, Stack, FormGroup } from "@mui/material";
 import Checkbox from "@mui/material/Checkbox";
-import { inputBaseShape, selectionBaseShape } from "../propTypes.js";
+import { inputBaseShape, selectionBaseShape } from "/src/Components/features/form//form-consumer/form-consumer-utilities/propTypes.js";
 
 CheckboxGroup.propTypes = {
   ...selectionBaseShape,

@@ -1,8 +1,8 @@
-import React from "react";
+import  {useState, useEffect} from "react";
 import {Link,} from "react-router";
 // TODO: Render based on user role
 import views from "./views.js";
-import logo2 from "../../../assets/logo2.svg";
+import logo2 from "/src/assets/logo2.svg";
 import {useLocation} from "react-router";
 import {Sidebar as FlowbiteSidebar} from "flowbite-react";
 import SidebarTheme from "../../shared/Themes/SidebarTheme.js";
@@ -13,13 +13,9 @@ const theme=SidebarTheme({baseWidth: "w-[300px]"});
 
 function Sidebar({role, activeWindow}) {
     const location = useLocation();
-    let myViews;
-    if(role === 'admin'){
-        myViews = views.adminViews;
-    }
-    else{
-        myViews = views.employeeViews;
-    }
+    // Todo : role based routing
+    const userViews = views["adminViews"];
+
     return (
         <>
             <FlowbiteSidebar theme={theme} className="h-[100vh]  z-10 max-w-[300px]  px-5 border-r s "
@@ -31,7 +27,7 @@ function Sidebar({role, activeWindow}) {
                     <FlowbiteSidebar.Items >
                         <FlowbiteSidebar.ItemGroup>
                             <>
-                                {myViews.map((item, index) => (
+                                {userViews.map((item, index) => (
                                     <FlowbiteSidebar.Item
                                         as={Link}
                                         to={item.route}
