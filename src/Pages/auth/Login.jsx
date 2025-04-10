@@ -15,41 +15,41 @@ const Login = () => {
     const [message, setMessage] = useState({ type: '', text: '' })
     const [resetEmail, setResetEmail] = useState('');
     const [isResetMode, setIsResetMode] = useState(false);
-    const { signInUser, signInWithGoogle } = useAuth();
+    const { signInUser } = useAuth();
     const navigate = useNavigate();
 
     const handleSignIn = async (e) => {
         e.preventDefault();
-        setLoading(true);
-        const { success, error } = await signInUser(email, password);
-    
-        if (!success) {
-            setMessage({ type: 'failure', text: error || "Failed to sign in" });
-            setTimeout(() => {
-                setMessage({ type: '', text: '' });
-            }, 10000);
-        } else {
-            setMessage({ type: 'success', text: 'Login successful!' });
-            navigate("/dashboard");
-        }
-        setLoading(false);
+        // setLoading(true);
+        // const { success, error } = await signInUser(email, password);
+        //
+        // if (!success) {
+        //     setMessage({ type: 'failure', text: error || "Failed to sign in" });
+        //     setTimeout(() => {
+        //         setMessage({ type: '', text: '' });
+        //     }, 10000);
+        // } else {
+        //     setMessage({ type: 'success', text: 'Login successful!' });
+        //     navigate("/dashboard");
+        // }
+        // setLoading(false);
     };
 
     const handleGoogleSignIn = async (e) => {
         e.preventDefault();
-        try {
-            setLoading(true);
-            const { success, error } = await signInWithGoogle();
-            
-            if (!success) {
-                throw error;
-            }
-        } catch (err) {
-            setMessage({ type: 'failure', text: "Failed to sign in with Google" });
-            console.error(err);
-        } finally {
-            setLoading(false);
-        }
+        // try {
+        //     setLoading(true);
+        //     const { success, error } = await signInWithGoogle();
+        //
+        //     if (!success) {
+        //         throw error;
+        //     }
+        // } catch (err) {
+        //     setMessage({ type: 'failure', text: "Failed to sign in with Google" });
+        //     console.error(err);
+        // } finally {
+        //     setLoading(false);
+        // }
     };
 
     const handleResetPassword = async (e) => {
