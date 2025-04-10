@@ -44,7 +44,7 @@ export const router = createBrowserRouter(
   { path: "/signup", element: <Signup /> },
   { path: "/login", element: <Login /> },
   { path: "/verify-email", element: <VerifyEmail /> },
-  { path: "/dashboard", element:<PrivateRoute>  <Dashboard />{" "} </PrivateRoute> ,},
+  { path: "/dashboard", element: <Dashboard />,},
   { path: "/leaderboard", element: <PrivateRoute> <Leaderboard />{" "} </PrivateRoute> },
   { path: "/profile", element:<PrivateRoute> <Profile />{" "} </PrivateRoute>},
   { path: "/blog-edit", element:<PrivateRoute> <BlogEdit />{" "} </PrivateRoute>},

@@ -15,41 +15,68 @@ const Login = () => {
     const [message, setMessage] = useState({ type: '', text: '' })
     const [resetEmail, setResetEmail] = useState('');
     const [isResetMode, setIsResetMode] = useState(false);
-    const { signInUser } = useAuth();
+    // Fix: Get the correct auth methods from your context
+    const auth = useAuth();
     const navigate = useNavigate();
 
     const handleSignIn = async (e) => {
         e.preventDefault();
-        // setLoading(true);
-        // const { success, error } = await signInUser(email, password);
-        //
-        // if (!success) {
-        //     setMessage({ type: 'failure', text: error || "Failed to sign in" });
-        //     setTimeout(() => {
-        //         setMessage({ type: '', text: '' });
-        //     }, 10000);
-        // } else {
-        //     setMessage({ type: 'success', text: 'Login successful!' });
-        //     navigate("/dashboard");
-        // }
-        // setLoading(false);
+        setLoading(true);
+        try {
+            // Use Supabase directly for sign in
+            const { data, error } = await supabase.auth.signInWithPassword({
+                email,
+                password
+            });
+            
+            if (error) throw error;
+            
+            setMessage({ type: 'success', text: 'Login successful!' });
+            
+            // Use navigate instead of window.location to avoid full page reload
+            setTimeout(() => {
+                navigate("/dashboard/overview");
+            }, 1000); // Short delay to show success message
+        } catch (err) {
+            console.error("Login error:", err);
+            setMessage({ 
+                type: 'failure', 
+                text: err.message || "Failed to sign in" 
+            });
+            setTimeout(() => {
+                setMessage({ type: '', text: '' });
+            }, 10000);
+        } finally {
+            setLoading(false);
+        }
     };
 
     const handleGoogleSignIn = async (e) => {
         e.preventDefault();
-        // try {
-        //     setLoading(true);
-        //     const { success, error } = await signInWithGoogle();
-        //
-        //     if (!success) {
-        //         throw error;
-        //     }
-        // } catch (err) {
-        //     setMessage({ type: 'failure', text: "Failed to sign in with Google" });
-        //     console.error(err);
-        // } finally {
-        //     setLoading(false);
-        // }
+        try {
+            setLoading(true);
+            // Use Supabase directly for Google sign in with redirect
+            const { data, error } = await supabase.auth.signInWithOAuth({
+                provider: 'google',
+                options: {
+                    redirectTo: `${window.location.origin}/dashboard/overview`,
+                    queryParams: {
+                        access_type: 'offline',
+                        prompt: 'consent'
+                    }
+                }
+            });
+            
+            if (error) throw error;
+            
+            // Note: The redirect is handled by Supabase after successful authentication
+            
+        } catch (err) {
+            setMessage({ type: 'failure', text: "Failed to sign in with Google" });
+            console.error("Google sign-in error:", err);
+        } finally {
+            setLoading(false);
+        }
     };
 
     const handleResetPassword = async (e) => {

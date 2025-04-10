@@ -10,6 +10,8 @@ import Assessment from './Assessment';
 import ResetPassword from './ResetPassword';
 import Profile from './Profile';
 import VerifyEmail from './VerifyEmail';
+import __deleteme__Assessment from './__deleteme__Assessment.jsx'
+import DashboardOutlet from './dashboard/DashboardOutlet.jsx';
 
 export {
     Blog,
@@ -22,5 +24,8 @@ export {
     Assessment,
     ResetPassword,
     Profile,
-    VerifyEmail
+    VerifyEmail,
+    __deleteme__Assessment,
+    DashboardOutlet
+
 };
