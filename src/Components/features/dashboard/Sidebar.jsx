@@ -2,7 +2,7 @@ import  {useState, useEffect} from "react";
 import {Link,} from "react-router";
 // TODO: Render based on user role
 import views from "./views.js";
-import logo2 from "/src/assets/logo.svg";
+import logo2 from "/src/assets/logo2.svg";
 import {useLocation} from "react-router";
 import {Sidebar as FlowbiteSidebar} from "flowbite-react";
 import SidebarTheme from "../../shared/Themes/SidebarTheme.js";

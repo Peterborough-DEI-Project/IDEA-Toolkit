@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import HomeNav from '../../Components/HomeNav.jsx'
 import { useNavigate } from 'react-router'
 import { useAuth } from '../../Components/AuthContext'
-import { supabase } from '../../supabaseClient.js'
+import { supabase } from "/supabase.js";
 
 const Login = () => {
     const [email, setEmail] = useState('')
@@ -28,8 +28,12 @@ const Login = () => {
                 email,
                 password
             });
+
+            console.log(email, password);
             
-            if (error) throw error;
+            if (error){
+               throw error;
+            }
             
             setMessage({ type: 'success', text: 'Login successful!' });
             

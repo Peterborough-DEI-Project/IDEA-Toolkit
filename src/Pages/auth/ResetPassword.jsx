@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
-import { supabase } from '../../supabaseClient.js';
+import { supabase } from "/supabase.js";
 import { Button, Label, TextInput } from 'flowbite-react';
 import { motion } from 'framer-motion';
 import homeBanner from '../../assets/ptbo.jpg';

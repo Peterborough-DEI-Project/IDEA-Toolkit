@@ -8,6 +8,7 @@ import PropTypes from "prop-types";
 import useSupabaseSession from "./useSupabaseSession.js";
 import FormSubmitter from "../Components/features/form/form-consumer/form-consumer-views/FormSubmitter.jsx";
 import SubmitAssessment from "../Pages/dashboard/dashboard-views/Employee/Assessments/utils/SubmitAssessment.jsx";
+import About from "../Pages/static-pages/About.jsx";
 
 
 
@@ -29,7 +30,7 @@ const Routing = ({session, setSession}) => {
             path="/login"
             element={user ?  <Navigate to="/dashboard" /> : <Login/> }
         />
-        {/* <Route path="/about" element={<About/>}/> */}
+         <Route path="/about" element={<About/>}/>
         <Route path="/dei" element={<DEI/>}/>
         <Route path="/blog" element={<Blog/>}/>
         <Route path="/blogedit" element={<BlogEdit/>}/>
