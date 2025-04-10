@@ -30,15 +30,19 @@ const views = {
             },
             {
                 label: "Profile",
-                icon:
-                PersonOutlined,
+                icon: PersonOutlined,
                 route:
                     "/dashboard/profile",
-                component:
-                AdminProfile,
+                component: AdminProfile,
             },
         ],
     employeeViews: [
+        {
+            label: "Overview",
+            icon: DashboardIcon,
+            route: "/dashboard/overview",
+            component: AdminOverview,
+        },
         {
             label: "Assessments",
             icon: AssessmentOutlined,
