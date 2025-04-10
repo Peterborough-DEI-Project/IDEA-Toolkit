@@ -1,5 +1,5 @@
 
-import { useAuth } from '../Components/AuthContext';
+import { useAuth } from '../../Components/AuthContext.jsx';
 import {
     Box,
     Toolbar,
@@ -14,7 +14,7 @@ import {
     Card,
     CardContent,
 } from '@mui/material';
-import HomeNav from '../Components/HomeNav';
+import HomeNav from '../../Components/HomeNav.jsx';
 import {
     Assessment,
     Person,

@@ -1,15 +1,15 @@
 
 import Blog from './blog/Blog.jsx';
-import Dashboard from './Dashboard';
+import Dashboard from './__old/Dashboard.jsx';
 import Home from './static-pages/Home.jsx';
 import Login from './auth/Login.jsx';
-import SignUp from './SignUp';
+import SignUp from './auth/SignUp.jsx';
 import DEI from './static-pages/DEI.jsx';
-import BlogEdit from './BlogEdit';
-import Assessment from './Assessment';
-import ResetPassword from './ResetPassword';
-import Profile from './Profile';
-import VerifyEmail from './VerifyEmail';
+import BlogEdit from './blog/BlogEdit.jsx';
+import Assessment from './__old/Assessment.jsx';
+import ResetPassword from './auth/ResetPassword.jsx';
+import Profile from './__old/Profile.jsx';
+import VerifyEmail from './auth/VerifyEmail.jsx';
 import __deleteme__Assessment from './__deleteme__Assessment.jsx'
 import DashboardOutlet from './dashboard/DashboardOutlet.jsx';
 

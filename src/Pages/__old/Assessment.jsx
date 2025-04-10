@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
-import HomeNav from '../Components/HomeNav';
+import HomeNav from '../../Components/HomeNav.jsx';
 
 const questions = [
   {

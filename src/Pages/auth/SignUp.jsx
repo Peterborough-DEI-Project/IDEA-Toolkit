@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { Button, Label, TextInput, Alert } from 'flowbite-react'
-import homeBanner from '../assets/ptbo.jpg'
+import homeBanner from '../../assets/ptbo.jpg'
 import { motion } from 'framer-motion'
-import HomeNav from '../Components/HomeNav'
+import HomeNav from '../../Components/HomeNav.jsx'
 import { useNavigate } from 'react-router'
-import { useAuth } from '../Components/AuthContext'
+import { useAuth } from '../../Components/AuthContext.jsx'
 
 const SignUp = () => {
     const navigate = useNavigate();

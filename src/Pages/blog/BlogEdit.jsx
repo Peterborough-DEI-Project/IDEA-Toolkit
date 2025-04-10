@@ -1,12 +1,8 @@
-import  { useState } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router';
 import HomeNav from '../../Components/HomeNav.jsx';
 import blog from '../../assets/blog.webp';
-import PropTypes from "prop-types";
-
-
-// Todo: add functionality for sequence order
 
 const BlogEdit = ({ session }) => {
     const navigate = useNavigate();
@@ -65,7 +61,7 @@ const BlogEdit = ({ session }) => {
                 >
                     <h1 className="text-3xl font-bold mb-8">Create New Blog Post</h1>
                     <form onSubmit={handleSubmit} className="space-y-6">
-                        {/* Title input-fields */}
+                        {/* Title Input */}
                         <div>
                             <label className="block text-gray-700 mb-2">Title</label>
                             <input
@@ -151,9 +147,5 @@ const BlogEdit = ({ session }) => {
         </div>
     );
 };
-
-BlogEdit.propTypes = {
-    session: PropTypes.any,
-}
 
 export default BlogEdit;

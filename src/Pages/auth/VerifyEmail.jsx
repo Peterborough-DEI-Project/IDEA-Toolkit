@@ -1,8 +1,8 @@
 import React from 'react';
 import { useLocation } from 'react-router';
 import { motion } from 'framer-motion';
-import homeBanner from '../assets/ptbo.jpg';
-import HomeNav from '../Components/HomeNav';
+import homeBanner from '../../assets/ptbo.jpg';
+import HomeNav from '../../Components/HomeNav.jsx';
 
 const VerifyEmail = () => {
     const location = useLocation();

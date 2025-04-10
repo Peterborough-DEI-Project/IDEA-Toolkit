@@ -7,6 +7,7 @@ import views from "../Components/features/dashboard/views.js";
 import PropTypes from "prop-types";
 import useSupabaseSession from "./useSupabaseSession.js";
 import FormSubmitter from "../Components/features/form/form-consumer/form-consumer-views/FormSubmitter.jsx";
+import SubmitAssessment from "../Pages/dashboard/dashboard-views/Employee/Assessments/utils/SubmitAssessment.jsx";
 
 
 
@@ -52,7 +53,7 @@ const Routing = ({session, setSession}) => {
                         <Route key={view+index} path={view.route} element={<view.component/>} />
                     ))
                   }
-                  <Route path="/dashboard/assessments/submit/:id" element={<FormSubmitter />} />
+                  <Route path="/dashboard/assessments/submit/:id" element={<SubmitAssessment />} />
               </Route>
             </Route>
         )}
